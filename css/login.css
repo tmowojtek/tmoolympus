@@ -1,0 +1,24 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-image: url('../images/prototypes/12772922_1117590691585488_878658930_o.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
+    background-position: center;
+}
+
+.loginImgBtn {
+    width: 87px;
+    height: 89px;
+}
