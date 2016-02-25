@@ -1,8 +1,3 @@
-html,
-body {
-    height: 100%;
-}
-
 body {
     background-image: url('../images/prototypes/12772922_1117590691585488_878658930_o.jpg');
     background-repeat: no-repeat;
@@ -16,9 +11,34 @@ body {
     -o-background-size: cover;
     background-size: cover;*/
     background-position: center;
+    border: 1px solid black;
 }
 
-.loginImgBtn {
-    width: 87px;
-    height: 89px;
+#loginPanel {
+    overflow: hidden;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 7%;
+    border: 1px solid black;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+input[type="submit"] {
+    border: 0;
+    box-sizing: border-box;
+    outline: none;
+    background-image: url('../images/prototypes/transparent_oi.png');
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: contain;
+    width: 57px;
+    height: 59px;
 }
