@@ -28,6 +28,9 @@ body {
 
 .wrapper {
     /*overflow: hidden;*/
+    -webkit-box-shadow: -63px -63px 21px -57px rgba(54, 203, 214, 1);
+    -moz-box-shadow: -63px -63px 21px -57px rgba(54, 203, 214, 1);
+    box-shadow: -63px -63px 21px -57px rgba(54, 203, 214, 1);
 }
 
 .rel-wrap {
@@ -35,7 +38,8 @@ body {
 }
 
 .inputBox {
-    margin-top: 1px;
+    /*margin-top: 1px;*/
+    /*margin-right: 5px;*/
 }
 
 .left {
@@ -52,7 +56,22 @@ body {
 
 input[type="text"].loginInput {
     background: rgba(255, 255, 255, 0.4);
-    border: 0;
+    padding-left: 10px;
+    height: 25.5px;
+    width: 148px;
+    border: 1px solid rgba(63, 191, 191, 0.7);
+}
+
+input[type="text"].loginInput.topLeftBorderRad {
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;
+}
+
+input[type="text"].loginInput.bottomLeftBorderRad {
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 ::-webkit-input-placeholder {
@@ -87,9 +106,16 @@ input[type="submit"].right.imgBtn {
     background-image: url('../images/prototypes/transparent_oi.png');
     background-position: 0px 0px;
     background-repeat: no-repeat;
-    background-color: transparent;
+    /*background-color: transparent;*/
+    background-color: rgba(63, 191, 191, 0.7);
     background-size: contain;
     width: 57px;
     height: 59px;
     border: 0;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
