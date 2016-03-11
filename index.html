@@ -7,9 +7,14 @@
     </title>
     <link type="text/css" rel="stylesheet" href="css/reset.css">
     <link type="text/css" rel="stylesheet" href="css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 </head>
 
 <body>
+
+    <img id="pegasus" src="_old/images/prototypes_v2/imageedit_31_5756135672.png" alt="tmo_pegasus" />
+
     <div class="content">
         <div class="connect">
             <p class="login">connect</p>
@@ -20,25 +25,25 @@
         <div class="login-box">
             <img class="clanFullName" src="./_old/images/prototypes_v2/imageedit_16_4634335070.png" alt="tmo_name">
             <div class="item tag">
-                <input class="input-style-text tag" type="text" placeholder=":realtag">
+                <input class="input-style-text tag" type="text" name="login-tag" placeholder=":realtag">
                 <img src="./_old/images/prototypes_v2/imageedit_18_6115006349.png" alt="tmo_tag">
             </div>
             <div class="item pw">
-                <input class="input-style-text pw" type="password" placeholder=":secret">
+                <input class="input-style-text pw" type="password" name="login-pw" placeholder=":secret">
                 <img class="pw" src="./_old/images/prototypes_v2/imageedit_20_9799982432.png" alt="tmo_pw">
             </div>
         </div>
         <div class="register-box">
             <div class="item tag">
-                <input class="input-style-text tag" type="text" placeholder=":realtag">
+                <input class="input-style-text tag" type="text" name="register-tag" placeholder=":realtag">
                 <img src="./_old/images/prototypes_v2/imageedit_18_6115006349.png" alt="tmo_tag">
             </div>
             <div class="item pw">
-                <input class="input-style-text pw" type="password" placeholder=":secret">
+                <input class="input-style-text pw" type="password" name="register-pw" placeholder=":secret">
                 <img class="pw" src="./_old/images/prototypes_v2/imageedit_20_9799982432.png" alt="tmo_pw">
             </div>
             <div class="item mail">
-                <input class="input-style-text mail" type="text" placeholder=":contact">
+                <input class="input-style-text mail" type="text" name="register-mail" placeholder=":contact">
                 <img class="mail" src="./_old/images/prototypes_v2/imageedit_22_3875189479.png" alt="tmo_mail">
             </div>
         </div>
@@ -49,6 +54,7 @@
             <!--<img class="tmo-submit" src="./_old/images/prototypes_v2/imageedit_24_4285594634.png" alt="tmo_submit">-->
         </div>
     </div>
+    <script type="text/javascript" src="scripts/login.js"></script>
 </body>
 
 </html>
