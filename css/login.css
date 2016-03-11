@@ -15,7 +15,7 @@ body {
 }
 
 .content {
-    background-image: url('../_old/images/prototypes_v2/imageedit_10_5094983763.png');
+    background-image: url('../_old/images/prototypes_v2/imageedit_14_3299759384.png');
     height: 408px;
     left: 50%;
     margin: -204px 0 0 -347px;
@@ -25,4 +25,134 @@ body {
     /*margin: 0 auto 0 auto;*/
     /*min-height: 514px;*/
     /*min-width: 837px;*/
+}
+
+.content .connect {
+    float: left;
+    height: 408px;
+    width: 55px;
+    /*overflow: hidden;*/
+}
+
+.content .connect p {
+    font-size: 40px;
+    height: auto;
+    line-height: 65%;
+    margin: auto;
+    /*padding-bottom: 10px;*/
+    padding-left: 10px;
+    padding-top: 113px;
+    width: 25px;
+    word-break: break-all;
+}
+
+.content .connect p a {
+    color: #AB825A;
+    text-decoration: none;
+}
+
+.content .connect p a:hover {
+    color: #AB825A;
+}
+
+.content .connect p a:visited {
+    color: #AB825A;
+}
+
+.content .connect p a:active {
+    color: #AB825A;
+}
+
+.content .rt-since {
+    float: right;
+    height: 408px;
+    width: 55px;
+    /*overflow: hidden;*/
+}
+
+.content .rt-since p {
+    font-size: 40px;
+    height: auto;
+    line-height: 60%;
+    margin: auto;
+    /*padding-bottom: 10px;*/
+    padding-right: 20px;
+    padding-top: 35px;
+    white-space: pre-wrap;
+    width: 10px;
+    word-break: break-all;
+}
+
+.content .rt-since p a {
+    color: #AB825A;
+    text-decoration: none;
+}
+
+.content .rt-since p a:visited {
+    color: #AB825A;
+}
+
+.content .rt-since p a:hover {
+    color: #AB825A;
+}
+
+.content .rt-since p a:active {
+    color: #AB825A;
+}
+
+.content .login-box {
+    display: block;
+    float: right;
+    padding-top: 65px;
+    width: 584px;
+}
+
+.login-box img {
+    display: block;
+}
+
+.login-box img.clanFullName {
+    margin:  auto;
+}
+
+.login-box .item {
+    height: 56px;
+    padding-left: 40px;
+    padding-top: 20px;
+    width: 548px;
+}
+
+.login-box .item img {
+    display: inline-block;
+}
+
+.content .register-box {
+    display: none;
+    float: right;
+    padding-top: 50px;
+    width: 548px;
+}
+
+.register-box .item {
+    height: 56px;
+    padding-left: 40px;
+    padding-top: 20px;
+    width: 548px;
+}
+
+.content .btn-submit {
+    display: block;
+    float: right;
+    width: 584px;
+}
+
+.register-box .item img {
+    display: inline-block;
+}
+
+.btn-submit .tmo-submit {
+    display: block;
+    float: right;
+    padding-top: 10px;
+    padding-right: 80px;
 }
