@@ -7,12 +7,15 @@
     </title>
     <link type="text/css" rel="stylesheet" href="css/reset.css">
     <link type="text/css" rel="stylesheet" href="css/lobby.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://malsup.github.io/min/jquery.cycle.all.min.js"></script>
 </head>
 
 <body>
-
+    <div id="body-tmo-text-image"><img src="_old/images/prototypes_v3/elementy/tmo-text-end.png" alt="tmo-text" /><img src="_old/images/prototypes_v3/elementy/tmo-text.png" alt="tmo-text" /></div>
     <div id="tmo-header">
-        <a id="tmo-logo-a-link" href=""><img id="tmo-img" src="_old/images/prototypes_v3/elementy/imageedit_33_3852496117_v8.png" alt="tmo-logo" /></a>
+        <a id="tmo-logo-a-link" href="lobby.html"><img id="tmo-img" src="_old/images/prototypes_v3/elementy/imageedit_33_3852496117_v8.png" alt="tmo-logo" /></a>
         <!-- <div id="black-to-transparent-header-bar"></div> -->
     </div>
     <div id="header-black-strip"></div>
@@ -25,7 +28,7 @@
         <!--<div id="nav-bar-menu-list"></div> -->
         <div id="tmo-ts-ip-clipboard"></div>
         <ul>
-            <li><a href="">ROSTER</a></li>
+            <li><a href="roster.html">ROSTER</a></li>
             <li><a href="">HISTORY</a></li>
             <li><a href="">WARS</a></li>
             <li><a href="">HALL OF FAME</a></li>
@@ -34,6 +37,53 @@
         </ul>
     </div>
     <div id="last-results-container">
+        <div id="last-wars-text" class="rotate">
+            <p>LAST WARS</p>
+        </div>
+        <div id="results-container">
+            <div class="single-result">
+                <div class="clan-logo">
+                    <a href=""><img src="_old/images/prototypes_v3/elementy/imageedit_51_6420134037.png" alt="home-img"/></a>
+                </div><!--
+                --><div class="war-result">
+                    <div class="test-wrap-div color-blue">
+                        <p><span class="">28</span><span class="color-black">:</span><span class="">10</span></p>
+                        <p class="details-link"><a href="">details</a></p>
+                    </div>
+                </div><!--
+                --><div class="clan-logo">
+                    <a href=""><img src="_old/images/prototypes_v3/elementy/logo1.png" alt="oponent-img" /></a>
+                </div>
+            </div><!--
+            --><div class="single-result">
+                <div class="clan-logo">
+                    <a href=""><img src="_old/images/prototypes_v3/elementy/imageedit_51_6420134037.png" alt="home-img"/></a>
+                </div><!--
+                --><div class="war-result">
+                    <div class="test-wrap-div color-orange">
+                        <p><span class="">24</span><span class="color-black">:</span><span class="">24</span></p>
+                        <p class="details-link"><a href="">details</a></p>
+                    </div>
+                </div><!--
+                --><div class="clan-logo">
+                    <a href=""><img src="_old/images/prototypes_v3/elementy/logo1.png" alt="oponent-img" /></a>
+                </div>
+            </div><!--
+            --><div class="single-result">
+                <div class="clan-logo">
+                    <a href=""><img src="_old/images/prototypes_v3/elementy/imageedit_51_6420134037.png" alt="home-img"/></a>
+                </div><!--
+                --><div class="war-result">
+                    <div class="test-wrap-div color-pink">
+                        <p><span class="">24</span><span class="color-black">:</span><span class="">28</span></p>
+                        <p class="details-link"><a href="">details</a></p>
+                    </div>
+                </div><!--
+                --><div class="clan-logo">
+                    <a href=""><img src="_old/images/prototypes_v3/elementy/logo1.png" alt="oponent-img" /></a>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="black-to-white-strip"></div>
     <div id="blue-orange-pink-strip"></div>
@@ -48,9 +98,9 @@
                     <p class="date">17:43 2016-03-19</p>
                 </div>
                 <div class="simple-news-content">
-                    <p class="show-more">MORE</p>
+                    <p id="show-1" class="show-more">MORE</p>
                     <img src="_old/images/prototypes_v3/elementy/12674686_1132838376727386_1230036664_n.jpg" alt="second_news_img" />
-                    <div id="tmo-blue-box-shadow" class="news-text is-hidden">
+                    <div id="show-1-news" class="tmo-blue-box-shadow news-text is-hidden">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec viverra libero, semper convallis augue. Morbi sollicitudin vel eros ac facilisis. Aenean accumsan, elit non venenatis eleifend, massa mauris interdum nisi, non vulputate magna elit in lorem. In pulvinar sodales magna. Cras tristique congue dignissim. Duis vel eros porttitor, malesuada lorem vitae, porta tellus. Sed consequat finibus velit eget suscipit. Cras maximus commodo augue, in elementum tortor suscipit vitae. Donec id neque et lacus auctor placerat posuere eget libero. Maecenas lobortis sem et nisl lacinia, at vulputate sem pharetra. Etiam vitae justo accumsan ante semper fermentum. Praesent laoreet magna lorem, nec lacinia quam ornare sed. Nulla consectetur ligula a justo luctus facilisis.</p>
 
                         <p>Cras suscipit tincidunt erat, vel vulputate justo scelerisque eget. Nulla facilisi. Duis suscipit imperdiet lectus vel ullamcorper. Integer ut dolor ut enim semper accumsan. In hendrerit pretium arcu, eget pellentesque tellus finibus non. In lobortis libero lorem. Duis gravida eleifend felis ut finibus.</p>
@@ -69,9 +119,9 @@
                     <p class="date">04:36 2016-03-16</p>
                 </div>
                 <div class="simple-news-content">
-                    <p class="show-more">MORE</p>
+                    <p id="show-2" class="show-more">MORE</p>
                     <img src="_old/images/prototypes_v3/elementy/1624649_1132838826727341_934553642_n.jpg" alt="first_news_img" />
-                    <div id="tmo-orange-box-shadow" class="news-text is-hidden">
+                    <div id="show-2-news" class="tmo-orange-box-shadow news-text is-hidden">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec viverra libero, semper convallis augue. Morbi sollicitudin vel eros ac facilisis. Aenean accumsan, elit non venenatis eleifend, massa mauris interdum nisi, non vulputate magna elit in lorem. In pulvinar sodales magna. Cras tristique congue dignissim. Duis vel eros porttitor, malesuada lorem vitae, porta tellus. Sed consequat finibus velit eget suscipit. Cras maximus commodo augue, in elementum tortor suscipit vitae. Donec id neque et lacus auctor placerat posuere eget libero. Maecenas lobortis sem et nisl lacinia, at vulputate sem pharetra. Etiam vitae justo accumsan ante semper fermentum. Praesent laoreet magna lorem, nec lacinia quam ornare sed. Nulla consectetur ligula a justo luctus facilisis.</p>
 
                         <p>Cras suscipit tincidunt erat, vel vulputate justo scelerisque eget. Nulla facilisi. Duis suscipit imperdiet lectus vel ullamcorper. Integer ut dolor ut enim semper accumsan. In hendrerit pretium arcu, eget pellentesque tellus finibus non. In lobortis libero lorem. Duis gravida eleifend felis ut finibus.</p>
@@ -91,9 +141,9 @@
                     <p class="date">22:45 2016-02-11</p>
                 </div>
                 <div class="simple-news-content">
-                    <p class="show-more">MORE</p>
+                    <p id="show-3" class="show-more">MORE</p>
                     <img src="_old/images/prototypes_v3/elementy/12884343_1132839973393893_1240818261_n.jpg" alt="first_news_img" />
-                    <div id="tmo-pink-box-shadow" class="news-text is-hidden">
+                    <div id="show-3-news" class="tmo-pink-box-shadow news-text is-hidden">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec viverra libero, semper convallis augue. Morbi sollicitudin vel eros ac facilisis. Aenean accumsan, elit non venenatis eleifend, massa mauris interdum nisi, non vulputate magna elit in lorem. In pulvinar sodales magna. Cras tristique congue dignissim. Duis vel eros porttitor, malesuada lorem vitae, porta tellus. Sed consequat finibus velit eget suscipit. Cras maximus commodo augue, in elementum tortor suscipit vitae. Donec id neque et lacus auctor placerat posuere eget libero. Maecenas lobortis sem et nisl lacinia, at vulputate sem pharetra. Etiam vitae justo accumsan ante semper fermentum. Praesent laoreet magna lorem, nec lacinia quam ornare sed. Nulla consectetur ligula a justo luctus facilisis.</p>
 
                         <p>Cras suscipit tincidunt erat, vel vulputate justo scelerisque eget. Nulla facilisi. Duis suscipit imperdiet lectus vel ullamcorper. Integer ut dolor ut enim semper accumsan. In hendrerit pretium arcu, eget pellentesque tellus finibus non. In lobortis libero lorem. Duis gravida eleifend felis ut finibus.</p>
@@ -110,22 +160,44 @@
 
         <!-- float righ i 22px marginu od lewej lub 218 width -->
         <div id="right-container">
-            <div id="right-container-headline">
+            <!--<div id="right-container-headline">
                 <p>CONTACT</p>
-            </div>
-            <div id="right-content">
-                <div id="test-inside">
-                    <div class="contact-social-icon"><a href=""><img src="_old/images/prototypes_v3/elementy/ghh.png" alt="steam-icon" /></a></div>
+            </div>-->
+            <div class="slide-show">
+                <div class="right-content active-right-content"> 
+                    <div class="right-container-headline">
+                        <p>CONTACT</p>
+                    </div>
+                    <img class="background-img" src="_old/images/prototypes_v3/elementy/12721747_1133425616668662_641202480_n.jpg" alt="right-background" />
+                    <div id="test-inside">
+                    <div class="contact-social-icon">
+                        <a href=""><img src="_old/images/prototypes_v3/elementy/ghh.png" alt="steam-icon" /></a>
+                    </div>
                     <!-- 
                     -->
-                    <div class="contact-social-icon"><a href=""><img src="_old/images/prototypes_v3/elementy/oie_1916227fKpUNtpU.png" alt="fb_icon" /></a></div>
+                    <div class="contact-social-icon">
+                        <a href=""><img src="_old/images/prototypes_v3/elementy/oie_1916227fKpUNtpU.png" alt="fb_icon" /></a>
+                    </div>
                 </div>
-                <div id="clock"><p>17:11</p></div>
-                <div id="test-inside-2"><div class="gmail-icon"><a href=""><img src="_old/images/prototypes_v3/elementy/oie_1916133XP7cfL1t.png" alt="gmail-icon" /></a></div></div>
-                <div id="test-inside-3">
-                    <div class="slide-icon active"></div>
-                    <div class="slide-icon"></div>
+                    <div id="clock">
+                        <p>17:11</p>
+                    </div>
+                    <div id="test-inside-2">
+                        <div class="gmail-icon">
+                        <a href=""><img src="_old/images/prototypes_v3/elementy/oie_1916133XP7cfL1t.png" alt="gmail-icon" /></a>
+                    </div>
+                    </div>
                 </div>
+                <div class="right-content is-hidden">
+                    <div class="right-container-headline">
+                        <p>RANDOM STUFF</p>
+                    </div>
+                    <img class="background-img" src="_old/images/prototypes_v3/elementy/imageedit_44_3098773349.jpg" alt="right-background" />
+                </div>
+            </div>
+            <div id="test-inside-3">
+                <div class="slide-icon active"></div>
+                <div class="slide-icon"></div>
             </div>
         </div>
     </div>
@@ -139,6 +211,7 @@
         </a>
         <p id="footer-pink-background">= THE MYTH OF = &copy; 2016</p>
     </div>
+    <script type="text/javascript" src="scripts/lobby.js"></script>
 </body>
 
 </html>
