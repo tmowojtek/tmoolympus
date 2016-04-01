@@ -362,6 +362,12 @@ body {
     width: 232px;
 }
 
+#roster .roster-element img {
+    display: block;
+    height: 175px;
+    width: 232px;
+}
+
 
 /* END OF MAIN CONTENT */
 
