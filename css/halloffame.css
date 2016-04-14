@@ -337,62 +337,100 @@ body {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#434349', endColorstr='#434349', GradientType=1);
 }
 
-.content-history {
-    background-color: white;
-    display: block;
-    padding: 20px;
-    /*text-align: center;*/
-    width: 889px;
-    font-family: 'Browallia new';
-    font-size: 24px;
-    border-top: 1px solid rgba(67, 67, 73, 0.8);
-    border-bottom: 1px solid rgba(67, 67, 73, 0.8);
-    border-left: 1px solid rgba(67, 67, 73, 0.8);
-    border-right: 1px solid rgba(67, 67, 73, 0.8);
+#main-content #content-hall {
+    background-image: url(../_old/images/prototypes_v3/12969380_1151932618151295_849553025_n.png);
+    border: 1px solid rgba(67, 67, 73, 0.8);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+    display: block;
+    padding: 20px;
+    width: 889px;
+    /*position: relative;*/
 }
+/*
+#main-content #content-hall:after {
+    content: "";
+    background-image: url(../_old/images/prototypes_v3/12969380_1151932618151295_849553025_n.png);
+    opacity: 0.95;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}*/
 
-.content-history .history-section {}
-
-.content-history .history-section p {
-    text-align: justify;
-    text-indent: 20px;
+#content-hall .section {
+    /*border-bottom: 1px solid rgba(67, 67, 73, 0.8);*/
     padding-bottom: 20px;
+    text-align: center;
+    width: 889px;
 }
 
-.content-history .history-section p:last-child {
+#content-hall .section:last-child {
     padding-bottom: 0px;
 }
 
-.content-history .past-logos {
-    padding: 30px 40px 0px 40px;
-    text-align-last: center;
+#content-hall .section p {
+    font-family: 'Browallia new';
 }
 
-.content-history .past-logos .image {
-    padding-right: 100px;
-    display: inline-block;
+#content-hall .section .header {
+    font-size: 40px;
+    font-weight: bold;
+    padding-bottom: 20px
+}
+
+#content-hall .section .league {
+    padding-bottom: 10px;
+    max-width: 350px;
+    margin: 0 auto 0 auto;
+}
+
+#content-hall .section .league:last-child {
+    padding-bottom: 0px;
+}
+
+#content-hall .section .league .league-name {
+    font-size: 30px;
+}
+
+#content-hall .section .league .league-name p {
+    display: inline;
+    /*position: relative;*/
     vertical-align: middle;
 }
 
-.content-history .past-logos .image:last-child {
-    padding-right: 0px
+#content-hall .section .league .league-name .test-img {
+    /*position: absolute;*/
+    /*display: inline;
+    position: absolute;
+    left: -1px;*/
+    width: 20px;
+    display: inline;
+    vertical-align: middle;
 }
 
-.content-history .past-logos .image .logo-img {
-    display: block;
-    max-width: 160px;
+
+/*
+.test-img {
+    display: inline;
+    position: absolute;
+    left: -1px;
+    width: 20px;
+}*/
+
+#content-hall .section .league .last-match {
+    font-size: 20px;
 }
 
-.content-history .past-logos .image .logo-desc {
-    font-size: 28px;
+#content-hall .section .league .special-thanks {
+    font-size: 20px;
 }
 
-.skyblue {
-    color: skyblue;
-}
+
+/* END OF MAIN CONTENT */
 
 
 /* FOOTER */
@@ -433,4 +471,8 @@ body {
 .not-active {
     pointer-events: none;
     cursor: default;
+}
+
+.italic {
+    font-style: italic;
 }

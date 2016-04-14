@@ -403,3 +403,10 @@ body {
 
 
 /* END OF FOOTER */
+
+/* RANDOM */
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}

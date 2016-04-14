@@ -55,6 +55,23 @@ var main = function () {
         $('.slide-show').cycle('resume');
     });
     */
+
+    var addZero = function (i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    var updateTime = function () {
+        var now = new Date();
+        var h = addZero(now.getHours());
+        var m = addZero(now.getMinutes());
+        $('#time').text(h+':'+m);
+    }
+    
+    updateTime();
+    setInterval(updateTime, 5000);
 };
 
 $(document).ready(main);
