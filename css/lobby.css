@@ -549,19 +549,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b2b30', end
     position: relative;
 }
 
-.simple-news-content p.show-more {
+.simple-news-content .news-img {
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+}
+
+.simple-news-content .news-img p.show-more {
     cursor: pointer;
-    color: white;
+    /*color: white;*/
+    color: palevioletred;
     font-family: 'Browallia new';
     font-size: 24px;
     font-weight: bold;
     position: absolute;
-    top: 60px;
+    /*top: 60px;
+    right: 10px;*/
     right: 10px;
+    bottom: 6px;
 }
 
-.simple-news-content img {
+.simple-news-content .news-img img {
     display: block;
+    width: 691px;
 }
 
 .simple-news-content .news-text {
