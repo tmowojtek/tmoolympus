@@ -14,14 +14,14 @@ var main = function () {
                 $('#' + localShowMore.attr('id') + '-news-img').height(curHeight).animate({
                     /*height: autoHeight*/
                     height: newHeight
-                }, 1000);
+                }, 500);
                 $('#' + localShowMore.attr('id') + '-news').slideToggle('slow', function () {
                     currShowMore.text($(this).is(':visible') ? 'LESS' : 'MORE');
                 });
             } else {
                 $('#' + localShowMore.attr('id') + '-news-img').animate({
                     height: '90px'
-                }, 1000);
+                }, 500);
                 $('#' + localShowMore.attr('id') + '-news').slideUp('slow', function () {
                     localShowMore.text($(this).is(':visible') ? 'LESS' : 'MORE');
                 });
