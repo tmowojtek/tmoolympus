@@ -12,7 +12,10 @@
 </head>
 
 <body>
-
+    <div class="error-message">
+        <img src="_old/images/login_and_regiser_error.png" alt="error-img"/>
+        <p>HEHEHEHEHE ERROR ON YA FACE RETARD</p>
+    </div>
     <img id="pegasus" src="_old/images/prototypes_v2/pegasus_v3.png" alt="tmo_pegasus" />
 
     <div class="content">
@@ -26,11 +29,11 @@
             <form action="/lobby.html" method="post">
                 <img class="clanFullName" src="./_old/images/prototypes_v2/imageedit_16_4634335070.png" alt="tmo_name">
                 <div class="item tag">
-                    <input class="input-style-text tag" type="text" name="tag" placeholder=":realtag">
+                    <input class="input-style-text tag" type="text" name="tag" placeholder=":realtag" required>
                     <img src="./_old/images/prototypes_v2/imageedit_18_6115006349.png" alt="tmo_tag">
                 </div>
                 <div class="item pw">
-                    <input class="input-style-text pw" type="password" name="pw" placeholder=":secret">
+                    <input class="input-style-text pw" type="password" name="pw" placeholder=":secret" required>
                     <img class="pw" src="./_old/images/prototypes_v2/imageedit_20_9799982432.png" alt="tmo_pw">
                 </div>
                 <div class="btn-submit">
@@ -41,19 +44,19 @@
         <div class="register-box">
             <form action="/lobby.html" method="post">
                 <div class="item tag">
-                    <input class="input-style-text tag" type="text" name="registertag" placeholder=":realtag">
+                    <input class="input-style-text tag" type="text" name="registertag" placeholder=":realtag" required>
                     <img class="tag" src="./_old/images/prototypes_v2/imageedit_18_6115006349.png" alt="tmo_tag">
                 </div>
                 <div class="item pw">
-                    <input class="input-style-text pw" type="password" name="registerpw" placeholder=":secret">
+                    <input class="input-style-text pw" type="password" name="registerpw" placeholder=":secret" required>
                     <img class="pw" src="./_old/images/prototypes_v2/imageedit_20_9799982432.png" alt="tmo_pw">
                 </div>
                 <div class="item re-pw">
-                    <input class="input-style-text pw" type="password" name="registerrepw" placeholder=":secret">
+                    <input class="input-style-text pw" type="password" name="registerrepw" placeholder=":secret" required>
                     <img class="re-pw" src="./_old/images/prototypes_v2/imageedit_60_4978301357.png" alt="tmo_re_pw">
                 </div>
                 <div class="item mail">
-                    <input class="input-style-text mail" type="text" name="registeremail" placeholder=":contact">
+                    <input class="input-style-text mail" type="text" name="registeremail" placeholder=":contact" required>
                     <img class="mail" src="./_old/images/prototypes_v2/imageedit_22_3875189479.png" alt="tmo_mail">
                 </div>
                 <div class="btn-submit">

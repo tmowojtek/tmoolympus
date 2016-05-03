@@ -14,6 +14,33 @@ body {
     display: block;
 }
 
+.error-message {
+    background-color: white;
+    border: 5px solid rgba(214, 182, 121, 0.9);
+    border-radius: 25px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    position: fixed;
+    text-align: center;
+    width: 504px;
+    z-index: -1;
+}
+
+.error-message img {
+    display: block;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.error-message p {
+    font-family: 'Browallia new';
+    font-size: 28px;
+    padding: 10px;
+}
+
 #pegasus {
     cursor: pointer;
     display: block;
