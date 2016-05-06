@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        = The Myth of = AUTHORIZATION
+    </title>
+    <link type="text/css" rel="stylesheet" href="/static/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+</head>
+
+<body>
+	<% if(signupMessage.length > 0 || signinMessage.length > 0) { %>
+    <div class="error-message">
+        <img src="/static/_old/images/login_and_regiser_error.png" alt="error-img"/>
+		<% if(signupMessage.length > 0) { %>
+			<p><%= signupMessage %></p>
+		<% } else if(signinMessage.length > 0) { %>
+			<p><%= signinMessage %></p>
+		<% } %>
+    </div>
+	<% } %>
+    <img id="pegasus" src="/static/_old/images/prototypes_v2/pegasus_v3.png" alt="tmo_pegasus" />
+
+    <div class="content">
+        <div class="connect">
+            <p class="login">connect</p>
+        </div>
+        <div class="rt-since">
+            <p class="register">rt and since ?</p>
+        </div>
+        <div class="login-box">
+            <form action="/auth/signin" method="post">
+                <img class="clanFullName" src="/static/_old/images/prototypes_v2/imageedit_16_4634335070.png" alt="tmo_name">
+                <div class="item tag">
+                    <input class="input-style-text tag" type="text" name="tag" placeholder=":realtag" required>
+                    <img src="/static/_old/images/prototypes_v2/imageedit_18_6115006349.png" alt="tmo_tag">
+                </div>
+                <div class="item pw">
+                    <input class="input-style-text pw" type="password" name="pw" placeholder=":secret" required>
+                    <img class="pw" src="/static/_old/images/prototypes_v2/imageedit_20_9799982432.png" alt="tmo_pw">
+                </div>
+                <div class="btn-submit">
+                    <button type="submit"><img src="/static/_old/images/prototypes_v2/imageedit_24_4285594634.png" alt="tmo_submit" /></button>
+                </div>
+            </form>
+        </div>
+        <div class="register-box">
+            <form action="/auth/signup" method="post">
+                <div class="item tag">
+                    <input class="input-style-text tag" type="text" name="registertag" placeholder=":realtag" required>
+                    <img class="tag" src="/static/_old/images/prototypes_v2/imageedit_18_6115006349.png" alt="tmo_tag">
+                </div>
+                <div class="item pw">
+                    <input class="input-style-text pw" type="password" name="registerpw" placeholder=":secret" required>
+                    <img class="pw" src="/static/_old/images/prototypes_v2/imageedit_20_9799982432.png" alt="tmo_pw">
+                </div>
+                <div class="item re-pw">
+                    <input class="input-style-text pw" type="password" name="registerrepw" placeholder=":secret" required>
+                    <img class="re-pw" src="/static/_old/images/prototypes_v2/imageedit_60_4978301357.png" alt="tmo_re_pw">
+                </div>
+                <div class="item mail">
+                    <input class="input-style-text mail" type="text" name="registeremail" placeholder=":contact" required>
+                    <img class="mail" src="/static/_old/images/prototypes_v2/imageedit_22_3875189479.png" alt="tmo_mail">
+                </div>
+                <div class="btn-submit">
+                    <button type="submit"><img src="/static/_old/images/prototypes_v2/imageedit_24_4285594634.png" alt="tmo_submit" /></button>
+                </div>
+            </form>
+        </div>
+        <!--<div class="btn-submit">
+            <a href="lobby.html">
+                <img src="./_old/images/prototypes_v2/imageedit_24_4285594634.png" alt="tmo_submit" />
+            </a>
+        </div>-->
+    </div>
+    <script type="text/javascript" src="/static/scripts/login.js"></script>
+</body>
+
+</html>
