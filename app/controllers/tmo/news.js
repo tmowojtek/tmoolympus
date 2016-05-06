@@ -7,6 +7,14 @@ var News = mongoose.model('News');
 module.exports.getLatestNewsAndWars = function(req, res) {
 	console.log('[controller] im about to render news page');
 	
+    News.find({ visibility: { $lte: req.user.roleId } }).limit(3).sort({ date: 'desc' }).select('-_id -visibility -comments').exec(function(err, result) {
+        if (err)
+            throw err;
+        
+        res.render('tmo/index.ejs', { latestNews: result });
+    });
+    
+    /*
 	Counter.generateNextSequence('newsid', function(err, result){
 		if(err) throw err;
 		
@@ -31,7 +39,7 @@ module.exports.getLatestNewsAndWars = function(req, res) {
 		
 		//res.render('tmo/index.ejs', { news: newNews });
 	});
-	
+	*/
 	// get and render news
 	//res.render('tmo/index.ejs');
 };
