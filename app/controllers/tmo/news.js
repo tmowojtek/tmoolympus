@@ -91,7 +91,7 @@ module.exports.getAllNews = function (req, res) {
     }).select('newsid title commentscount date _authorid -_id').exec(function (err, news) {
         if (err)
             throw err;
-        res.send(JSON.stringify(news));
+        res.render('tmo/news-list.ejs', { news: news });
     });
 };
 

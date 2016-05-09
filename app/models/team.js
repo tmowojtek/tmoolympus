@@ -25,15 +25,18 @@ var TeamSchema = new Schema({
         type: String
         , required: true
     }
-    , leaders: [{
+    , createdby: {
         type: Schema.Types.ObjectId
         , ref: 'User'
         , required: true
+    }
+    , leaders: [{
+        type: Schema.Types.ObjectId
+        , ref: 'User'
     }]
     , members: [{
         type: Schema.Types.ObjectId
         , ref: 'User'
-        , required: true
     }]
 });
 
