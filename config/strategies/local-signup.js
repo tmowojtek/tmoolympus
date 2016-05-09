@@ -4,6 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('mongoose').model('User');
 var Counter = require('mongoose').model('Counter');
+var Role = require('mongoose').model('Role');
 
 module.exports = function() {
 	passport.use('local-signup', new LocalStrategy({
@@ -15,12 +16,12 @@ module.exports = function() {
 			var email = req.body.registeremail.toLowerCase();
 			if ( !email || (email.trim() ==='') )
 				return done(null, false, req.flash('signupMessage', 'Unknown email'));
-			var tagLowercase = tag.toLowerCase();
+			var taglowercase = tag.toLowerCase();
 			console.log(email); // !!!!!!!!!!!!!!!
 			User.find(
-				{ $or: [{ tagLowercase: tagLowercase }, { email: email } ]},
+				{ $or: [{ taglowercase: taglowercase }, { email: email } ]},
 				function(err, users) {
-					console.log(tag + ' ' + tagLowercase + ' ' + pw + ' ' + req.body.registerrepw); // !!!!!!!!!!!!!!!
+					console.log(tag + ' ' + taglowercase + ' ' + pw + ' ' + req.body.registerrepw); // !!!!!!!!!!!!!!!
 					console.log(users);
 					if(err) return done(err);
 					if (pw !== req.body.registerrepw)
@@ -28,15 +29,32 @@ module.exports = function() {
 					if(users.length) {
 						console.log('nie ma nic a jestem tutaj?');
 						users.forEach(function(user) {
-							if(user.tagLowercase === tagLowercase)
+							if(user.taglowercase === taglowercase)
 								return done(null, false, req.flash('signupMessage', 'This tag is already in use'));
 							else if (user.email === email)
 								return done(null, false, req.flash('signupMessage', 'This email is already in use'));
 						});
 					} else {
 						console.log('jestem tutaj');
-						var newUser = new User();
 						
+                        var newUser = new User({ tag: tag,
+                                                taglowercase: taglowercase,
+                                                pw: User.generateHash(pw),
+                                                email: email
+                                               });
+                        
+                        console.log('newuser po konstruktorze: ' + newUser);
+						
+                        newUser.save(function(err) {
+                            if (err)
+                                throw err;
+                            
+                            console.log('zapisany user: ' + newUser);
+                            
+                            return done(null, newUser);
+                        });
+
+                        /*
 						Counter.generateNextSequence('userid', function(err, result) {
 							console.log('userSIGNUP: ' + newUser);
 							if (err) throw err;
@@ -55,7 +73,7 @@ module.exports = function() {
 								return done(null, newUser);
 							});
 						});
-						
+						*/
 						/*
 						newUser.tag = tag;
 						newUser.tagLowercase = tagLowercase;

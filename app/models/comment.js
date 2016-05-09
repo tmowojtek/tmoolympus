@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 
 var CommentSchema = new Schema({
 	userid: {
-		type: Number,
-		required: true
+		type: Schema.Types.ObjectId,
+        ref: 'User'
 	},
 	body: {
 		type: String,

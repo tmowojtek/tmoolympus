@@ -15,7 +15,6 @@ var CounterSchema = new Schema({
 	seq: {
 		type: Number,
 		required: true,
-		unique: true,
 		default: 0
 	}
 });

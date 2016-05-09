@@ -10,9 +10,9 @@ news.get('/', isLoggedIn, newsController.getLatestNewsAndWars);
 // lists news per user with role
 news.get('/news', isLoggedIn, newsController.getAllNews);
 // get one particular news with comments
-news.get('/news/:newsid', isLoggedIn, newsController.getNewsById);
+news.get('/news/:newsid([0-9]+)', isLoggedIn, newsController.getNewsById);
 // get page with NEXT or PREV news - pagination
-news.get('/news/page/:pageid', isLoggedIn, newsController.getNextOrPrevThreeNews);
+news.get('/news/page/:pageid([0-9]+)', isLoggedIn, newsController.getPage);
 
 /*
 news.get('/', isLoggedIn, function(req, res) {
