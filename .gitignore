@@ -1,0 +1,3 @@
+# folders and files to exclude
+log/
+config/config.js
