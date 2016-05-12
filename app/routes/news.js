@@ -13,6 +13,8 @@ news.get('/news', isLoggedIn, newsController.getAllNews);
 news.get('/news/:newsid([0-9]+)', isLoggedIn, newsController.getNewsById);
 // get page with NEXT or PREV news - pagination
 news.get('/news/page/:pageid([0-9]+)', isLoggedIn, newsController.getPage);
+// post comment news
+news.post('/news/:newsid([0-9]+)/addcomment', isLoggedIn, newsController.addComment);
 
 /*
 news.get('/', isLoggedIn, function(req, res) {

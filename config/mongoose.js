@@ -1,11 +1,17 @@
 'use strict'
 
 var mongoose = require('mongoose');
+//var deepPopulate = require('mongoose-deep-populate')(mongoose);
+var autoPopulate = require('mongoose-autopopulate');
 
 module.exports.init = function(app) {
 	var config = app.get('config');
 	
 	mongoose.connect(config.mongodb.uri);
+    
+    // global plugin registration
+    //mongoose.plugin(deepPopulate, {});
+    mongoose.plugin(autoPopulate);
 	
 	// If the Node process ends, cleanup existing connections
 	process.on('SIGINT', cleanup);

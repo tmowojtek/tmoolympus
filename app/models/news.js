@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Comment = require('./comment');
 var Counter = require('./counter');
+//var autoPopulate = require('mongoose-autopopulate');
 
 var NewsSchema = new Schema({
     newsid: {
@@ -35,6 +36,10 @@ var NewsSchema = new Schema({
         , required: true
         , default: Date.now
     }
+    , _categoryid: {
+        type: Schema.Types.ObjectId
+        , ref: 'NewsCategory'
+    }
     , commentscount: {
         type: Number
         , required: true
@@ -43,17 +48,22 @@ var NewsSchema = new Schema({
     , comments: [{
         type: Schema.Types.ObjectId
         , ref: 'Comment'
+        , autopopulate: {
+            select: '-_id'
+        }
     }]
 });
+
+//NewsSchema.plugin(autoPopulate);
 
 NewsSchema.pre('validate', function (callback) {
     var self = this;
 
     Counter.generateNextSequence('newsid', function (err, result) {
         if (err) throw err;
-        
+
         self.newsid = result.seq;
-        
+
         callback();
     });
 });

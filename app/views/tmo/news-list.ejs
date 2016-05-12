@@ -43,7 +43,7 @@
         <div id="news-list-section">
             <% news.forEach(function(oneNews) { %>
                 <div class="news">
-                    <img src="/static/_old/images/_ikony_list_news/star.png" alt="star" />
+                    <img src="<%= oneNews._categoryid.picturesrc %>" alt="<%= oneNews._categoryid.categoryname %>" />
                     <p class="title">
                         <a href="/news/<%= oneNews.newsid %>">
                             <%= oneNews.title %>

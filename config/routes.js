@@ -14,6 +14,8 @@ module.exports.init = function(app) {
 	// to do admin
 	// to do cup subpage
 	// to do ladder subpage
+    // to create necessary environment
+    app.use('/create', require(path.join(routesPath, '/create')));
 	
 	// handling unwilled request?
 	app.get('/*', function (req, res) {

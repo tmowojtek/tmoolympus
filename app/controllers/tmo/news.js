@@ -3,17 +3,22 @@
 var mongoose = require('mongoose');
 var Counter = mongoose.model('Counter');
 var News = mongoose.model('News');
+var Comment = mongoose.model('Comment');
 
 module.exports.getLatestNewsAndWars = function (req, res) {
     console.log('[controller] im about to render news page');
 
     console.log('user roles: ' + req.user._roleid);
     News.count({
-        _visibility: req.user._roleid
+        _visibility: {
+            $in: req.user._roleid
+        }
     }, function (err, count) {
         if (err) throw err;
         News.find({
-            _visibility: req.user._roleid
+            _visibility: {
+                $in: req.user._roleid
+            }
         }).populate('_authorid', 'userid tag -_id').limit(3).sort({
             date: 'desc'
         }).select('newsid title body commentscount picturesrc date _authorid -_id').exec(function (err2, result) {
@@ -85,34 +90,42 @@ module.exports.getLatestNewsAndWars = function (req, res) {
 
 module.exports.getAllNews = function (req, res) {
     News.find({
-        _visibility: req.user._roleid
-    }).populate('_authorid', 'userid tag -_id').sort({
+        _visibility: {
+            $in: req.user._roleid
+        }
+    }).populate('_authorid', 'userid tag -_id').populate('_categoryid', 'picturesrc categoryname -_id').sort({
         date: 'desc'
-    }).select('newsid title commentscount date _authorid -_id').exec(function (err, news) {
+    }).select('newsid title commentscount date _authorid _categoryid -_id').exec(function (err, news) {
         if (err)
             throw err;
-        res.render('tmo/news-list.ejs', { news: news });
+        console.log(news);
+        res.render('tmo/news-list.ejs', {
+            news: news
+        });
     });
 };
 
 module.exports.getNewsById = function (req, res) {
     News.findOne({
         $and: [{
-                newsid: req.params.newsid
+            newsid: req.params.newsid
+            }, {
+            _visibility: {
+                $in: req.user._roleid
             }
-            
-            , {
-                _visibility: req.user._roleid
         }]
-    }).populate('_authorid', 'userid tag -_id').populate('comments', '-_id').sort({
+    }).populate('_authorid', 'userid tag -_id').populate('_categoryid', 'categoryname picturesrc -_id') /*.populate('comments', '-_id')*/ .sort({
         date: 'desc'
-    }).select('newsid title body commentscount date _authorid comments -_id').exec(function (err, news) {
+    }).select('newsid title body commentscount date _authorid _categoryid comments').exec(function (err, news) {
+        //console.log(news);
         if (err)
             throw err;
         if (!news)
             res.send('no news with such id :[');
         else
-            res.send(JSON.stringify(news));
+            res.render('tmo/news-id.ejs', {
+                news: news
+            });
     });
 };
 
@@ -122,11 +135,15 @@ module.exports.getPage = function (req, res) {
     console.log('page: ' + page);
 
     News.count({
-        _visibility: req.user._roleid
+        _visibility: {
+            $in: req.user._roleid
+        }
     }, function (err, count) {
         if (err) throw err;
         News.find({
-            _visibility: req.user._roleid
+            _visibility: {
+                $in: req.user._roleid
+            }
         }).populate('_authorid', 'userid tag -_id').limit(3).sort({
             date: 'desc'
         }).skip(3 * page).select('newsid title body picturesrc commentscount date _authorid -_id').exec(function (err2, result) {
@@ -183,4 +200,64 @@ module.exports.getPage = function (req, res) {
         });
     });
     */
+};
+
+module.exports.addComment = function (req, res) {
+    var newComment = new Comment({
+        _userid: req.user._id
+        , _newsid: req.body._news_id
+        , body: req.body._body
+    });
+    console.log('parentCommentId ' + req.body.parentCommentId);
+    if (req.body.parentCommentId == 0) {
+        News.findOneAndUpdate({
+            _id: req.body._news_id
+        }, {
+            $push: {
+                comments: newComment
+            }
+            , $inc: {
+                commentscount: 1
+            }
+        }, {
+            new: true
+        }, function (err, updatedNews) {
+            if (err) throw err;
+            // res.send('Updated following user' + updatedUser);
+            newComment.save(function (err, newCom) {
+                if (err) throw err;
+                res.send('Comment added successfuly!');
+            })
+        });
+    } else if (req.body.parentCommentId > 0) {
+        Comment.findOneAndUpdate({
+            commentid: req.body.parentCommentId
+        }, {
+            $push: {
+                comments: newComment
+            }
+        }, {
+            new: true
+        }, function (err, updatedComment) {
+            if (err) throw err;
+            newComment.save(function (err, newCom) {
+                if (err) throw err;
+                News.findOneAndUpdate({
+                    _id: req.body._news_id
+                }, {
+                    $inc: {
+                        commentscount: 1
+                    }
+                }, {
+                    new: true
+                }, function (err, updatedNews) {
+                    if (err) throw err;
+                    res.send('Comment added successfuly!');
+                });
+            });
+        });
+    } else {
+        console.log('im here');
+        res.send('Ups.. something went wrong mehhhhhhhh...');
+    }
 };
