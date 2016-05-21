@@ -16,11 +16,11 @@ var postAddComment = function (serializedFormInputArray) {
         }, cache: false
         , timeout: 10000
     }).done(function (data) {
-        alert(data);
-        window.location = $('input[name=newsurl]').val();
+        alert(data.msg);
+        window.location.href = $('input[name=newsurl]').val();
     }).fail(function (data) {
-        alert(data);
-        window.location = $('input[name=newsurl]').val();
+        alert(data.msg);
+        window.location.href = $('input[name=newsurl]').val();
     });
 }
 
@@ -35,7 +35,7 @@ var addCommentResponseBox = function (commentid) {
             styleItoComment = "style='background-image: url(/static/_old/def_I.png);background-repeat: no-repeat;background-position: 0px 0px;'";
         }
 
-        $('#com' + commentid + ' .postcontent:eq(0)').after("<div id='comment-reply' " + styleItoComment + "><form id='comment-reply-form' method='get'><input type='hidden' name='newsurlin' value='/news/id'><input type='hidden' name='_news_idin' value='_news_id'><input type='hidden' name='parentCommentIdin' value='" + commentid + "'><textarea id='reply-comment' name='replycommentin' placeholder='Let him know what you think!'></textarea><input class='answer-button' type='submit' value='Answer'></form></div>");
+        $('#com' + commentid + ' .postcontent:eq(0)').after("<div id='comment-reply' " + styleItoComment + "><form id='comment-reply-form' method='post'><input type='hidden' name='newsurlin' value='/news/id'><input type='hidden' name='_news_idin' value='_news_id'><input type='hidden' name='parentCommentIdin' value='" + commentid + "'><textarea id='reply-comment' name='replycommentin' placeholder='Let him know what you think!'></textarea><input class='answer-button' type='submit' value='Answer'></form></div>");
 
         /*
         $('#com' + commentid).children('.postcontent').children('.message').append("<div id='comment-reply' " + styleItoComment +"><form id='comment-reply-form' method='post'><textarea id='reply-comment' name='replycommentin' placeholder='Let him know what you think!'></textarea><input class='answer-button' type='submit' value='Answer'></form></div>");
@@ -50,6 +50,7 @@ var addCommentResponseBox = function (commentid) {
                 //event.preventDefault();
                 var serializedFormInputArray = $('#comment-reply-form').serializeArray();
                 postAddComment(serializedFormInputArray);
+                //return false;
             }
         });
     }

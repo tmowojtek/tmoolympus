@@ -1,5 +1,5 @@
-var main = function() {
-    
+var main = function () {
+
 }
 
 $(document).ready(main);

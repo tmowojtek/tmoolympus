@@ -13,20 +13,19 @@
 </head>
 
 <body>
+    <% include const_elements/header %>
+    <!--
     <div id="body-tmo-text-image"><img src="/static/_old/images/prototypes_v3/elementy/tmo-text-end.png" alt="tmo-text" /><img src="/static/_old/images/prototypes_v3/elementy/tmo-text.png" alt="tmo-text" /></div>
     <div id="tmo-header">
         <a id="tmo-logo-a-link" href="/"><img id="tmo-img" src="/static/_old/images/prototypes_v3/elementy/imageedit_33_3852496117_v8.png" alt="tmo-logo" /></a>
-        <!-- <div id="black-to-transparent-header-bar"></div> -->
     </div>
     <div id="header-black-strip"></div>
-    <!-- -->
-    <div id="nav-blue-strip"></div>
-    <!-- -->
+    -->
     
+    <% include const_elements/nav-top %>
+    <!--
+    <div id="nav-blue-strip"></div>
     <div id="tmo-nav-bar">
-        <!--<div id="nav-bar-blue-strip"></div>-->
-        <!-- -->
-        <!--<div id="nav-bar-menu-list"></div> -->
         <div id="tmo-ts-ip-clipboard" class="not-active"></div>
         <ul>
             <li><a href="roster.html">ROSTER</a></li>
@@ -37,7 +36,10 @@
             <li><a class="not-active" href="">FORUM</a></li>
         </ul>
     </div>
+    -->
     
+    <% include const_elements/last-wars %>
+    <!--
     <div id="last-results-container">
         <div id="last-wars-text" class="rotate">
             <p>LAST WARS</p>
@@ -87,9 +89,13 @@
             </div>
         </div>
     </div>
+    -->
     
+    <% include const_elements/nav-bottom %>
+    <!--
     <div id="black-to-white-strip"></div>
     <div id="blue-orange-pink-strip"></div>
+    -->
     
     <div id="main-content">
         <div id="news">
@@ -138,10 +144,9 @@
         </div> 
 
         <!-- float righ i 22px marginu od lewej lub 218 width -->
+        <% include const_elements/right-container %>
+        <!--
         <div id="right-container">
-            <!--<div id="right-container-headline">
-                <p>CONTACT</p>
-            </div>-->
             <div class="slide-show">
                 <div class="right-content active-right-content"> 
                     <div class="right-container-headline">
@@ -152,8 +157,6 @@
                     <div class="contact-social-icon">
                         <a class="not-active" href=""><img src="/static/_old/images/prototypes_v3/elementy/ghh.png" alt="steam-icon" /></a>
                     </div>
-                    <!-- 
-                    -->
                     <div class="contact-social-icon">
                         <a class="not-active" href=""><img src="/static/_old/images/prototypes_v3/elementy/oie_1916227fKpUNtpU.png" alt="fb_icon" /></a>
                     </div>
@@ -179,24 +182,19 @@
                 <div class="slide-icon"></div>
             </div>
         </div>
+        -->
     </div>
 
+    <% include const_elements/index-pagination %>
+    <% include const_elements/footer %>
+    <!--
     <div id="footer">
-        <div id="pagination">
-            <a href="/news">
-                <p id="footer-blue-background">ALL NEWS</p>
-            </a>
-            <a <% if(page < 2) { %> class="not-active" <% } %>href="/news/page/<% if(page > 1) { if(page > pages) { %><%= pages %><% } else { %><%= page-1 %><% }} else { %>1<% } %>">
-                <p id="footer-orange-background">PREVIOUS NEWS</p>
-            </a>
-            <a <% if(page >= pages) { %> class="not-active" <% } %>href="/news/page/<% if(page < pages) { %><%= page+1 %><% } else { %><%= pages %><% } %>">
-                <p id="footer-pink-background">MORE NEWS</p>
-            </a>
-        </div>
         <div id="copyrights">
             <p id="footer-copyrights">= THE MYTH OF = &copy; 2016</p>
         </div>
     </div>
+    -->
+    
     <script type="text/javascript" src="/static/scripts/lobby.js"></script>
 </body>
 

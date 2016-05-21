@@ -348,12 +348,14 @@ body {
 
 #main-content #content-hall {
     background-image: url(../_old/images/prototypes_v3/12969380_1151932618151295_849553025_n.png);
+    background-repeat: no-repeat;
+    background-color: white;
     border: 1px solid rgba(67, 67, 73, 0.8);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
     display: block;
-    padding: 20px;
+    padding: 60px 20px 20px 20px;
     width: 889px;
     /*position: relative;*/
 }
@@ -472,6 +474,9 @@ body {
     background-color: rgba(202, 44, 118, 0.9);
 }
 
+#footer-copyrights {
+    background-color: beige;
+}
 
 /* END OF FOOTER */
 

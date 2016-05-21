@@ -39,7 +39,8 @@ module.exports = function() {
 						
                         var newUser = new User({ tag: tag,
                                                 taglowercase: taglowercase,
-                                                pw: User.generateHash(pw),
+                                                pw: pw,
+                                                /*pw: User.generateHash(pw),*/
                                                 email: email
                                                });
                         

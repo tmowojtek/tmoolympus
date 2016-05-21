@@ -116,7 +116,7 @@ module.exports.getNewsById = function (req, res) {
         }]
     }).populate('_authorid', 'userid tag -_id').populate('_categoryid', 'categoryname picturesrc -_id') /*.populate('comments', '-_id')*/ .sort({
         date: 'desc'
-    }).select('newsid title body commentscount date _authorid _categoryid comments').exec(function (err, news) {
+    }).select('newsid picturesrc title body commentscount date _authorid _categoryid comments').exec(function (err, news) {
         //console.log(news);
         if (err)
             throw err;
@@ -124,7 +124,8 @@ module.exports.getNewsById = function (req, res) {
             res.send('no news with such id :[');
         else
             res.render('tmo/news-id.ejs', {
-                news: news
+                news: news,
+                loggedUserId: req.user.userid
             });
     });
 };
@@ -226,7 +227,7 @@ module.exports.addComment = function (req, res) {
             // res.send('Updated following user' + updatedUser);
             newComment.save(function (err, newCom) {
                 if (err) throw err;
-                res.send('Comment added successfuly!');
+                res.send({ msg: 'Comment added successfuly!', comId: newCom.commentid });
             })
         });
     } else if (req.body.parentCommentId > 0) {
@@ -252,12 +253,12 @@ module.exports.addComment = function (req, res) {
                     new: true
                 }, function (err, updatedNews) {
                     if (err) throw err;
-                    res.send('Comment added successfuly!');
+                    res.send({ msg: 'Comment added successfuly!' });
                 });
             });
         });
     } else {
         console.log('im here');
-        res.send('Ups.. something went wrong mehhhhhhhh...');
+        res.send({ msg: 'Ups.. something went wrong mehhhhhhhh...' });
     }
 };

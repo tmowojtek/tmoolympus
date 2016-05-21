@@ -11,19 +11,19 @@
 </head>
 
 <body>
+    <% include const_elements/header %>
+    <!--
     <div id="body-tmo-text-image"><img src="/static/_old/images/prototypes_v3/elementy/tmo-text-end.png" alt="tmo-text" /><img src="/static/_old/images/prototypes_v3/elementy/tmo-text.png" alt="tmo-text" /></div>
     <div id="tmo-header">
         <a id="tmo-logo-a-link" href="/"><img id="tmo-img" src="/static/_old/images/prototypes_v3/elementy/imageedit_33_3852496117_v8.png" alt="tmo-logo" /></a>
-        <!-- <div id="black-to-transparent-header-bar"></div> -->
     </div>
     <div id="header-black-strip"></div>
-    <!-- -->
+    -->
+    
+    <% include const_elements/nav-top %>
+    <!--
     <div id="nav-blue-strip"></div>
-    <!-- -->
     <div id="tmo-nav-bar">
-        <!--<div id="nav-bar-blue-strip"></div>-->
-        <!-- -->
-        <!--<div id="nav-bar-menu-list"></div> -->
         <div id="tmo-ts-ip-clipboard" class="not-active"></div>
         <ul>
             <li><a href="roster.html">ROSTER</a></li>
@@ -34,11 +34,16 @@
             <li><a class="not-active" href="">FORUM</a></li>
         </ul>
     </div>
+    -->
+    <% include const_elements/nav-bottom %>
+    <!--
     <div id="black-to-white-strip"></div>
     <div id="blue-orange-pink-strip"></div>
-
+    -->
+    
     <div id="main-content" class="background-diagrent-white">
-        <img id="news-img" src="/static/_old/images/prototypes_v3/news-logo/12980449_1153989034612320_1395700151_n.png" alt="news-img" />
+        <!--<img id="news-img" src="/static/_old/images/prototypes_v3/news-logo/12980449_1153989034612320_1395700151_n.png" alt="news-img" />-->
+        <img id="news-img" src="<%= news.picturesrc %>" alt="news-img" />
         <div id="news-title">
             <p id="title-h">
                 <%= news.title %>
@@ -83,14 +88,16 @@
                                         ('0' + comment.date.getHours()).slice(-2) + ':' + 
                                         ('0' + comment.date.getMinutes()).slice(-2); %></span></p>
                             <input class="reply-button" type="submit" value="reply" onclick="addCommentResponseBox(<%= comment.commentid %>);">
-                            <!--<input class="edit-button" type="submit" value="edit">-->
+                            <% if ( comment._userid.userid == loggedUserId ) { %>
+                                <input class="edit-button not-active" type="submit" value="edit">
+                            <% } %>
                         </div>
                         <div class="message">
                             <%- comment.body %>
                         </div>
                     </div>
                     <% var printComments; %>
-                        <% include comments-function %>
+                        <% include functions/comments-function %>
                             <% if (comment.comments.length > 0) { %>
                                 <%- printComments(comment.comments); %>
                                     <% } %>
@@ -172,7 +179,7 @@
 
         <div id="main-reply">
             <p>Reply to the main post:</p>
-            <form id="main-reply-form" method="get">
+            <form id="main-reply-form" method="post">
                 <input type="hidden" name="newsurl" value="/news/<%= news.newsid %>">
                 <input type="hidden" name="_news_id" value="<%= news._id %>">
                 <input type="hidden" name="parentCommentId" value="0">
@@ -182,9 +189,13 @@
         </div>
     </div>
 
+    <% include const_elements/footer %>
+    <!--
     <div id="footer">
         <p id="footer-copyrights">= THE MYTH OF = &copy; 2016</p>
     </div>
+    -->
+    
     <script type="text/javascript" src="/static/scripts/news-id.js"></script>
 </body>
 

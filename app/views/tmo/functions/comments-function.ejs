@@ -12,7 +12,9 @@
                                         ('0' + comment.date.getHours()).slice(-2) + ':' + 
                                         ('0' + comment.date.getMinutes()).slice(-2); %></span></p>
                     <input class="reply-button" type="submit" value="reply" onclick="addCommentResponseBox(<%= comment.commentid %>);">
-                    <!--<input class="edit-button" type="submit" value="edit">-->
+                    <% if ( comment._userid.userid == loggedUserId ) { %>
+                                <input class="edit-button not-active" type="submit" value="edit">
+                    <% } %>
                 </div>
                 <div class="message">
                     <%- comment.body %>

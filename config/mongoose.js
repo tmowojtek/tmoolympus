@@ -8,6 +8,7 @@ module.exports.init = function(app) {
 	var config = app.get('config');
 	
 	mongoose.connect(config.mongodb.uri);
+    //mongoose.connect(config.mongodb.uri, config.mongodb.options);
     
     // global plugin registration
     //mongoose.plugin(deepPopulate, {});

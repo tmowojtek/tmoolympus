@@ -11,6 +11,8 @@ news.get('/', isLoggedIn, newsController.getLatestNewsAndWars);
 news.get('/news', isLoggedIn, newsController.getAllNews);
 // get one particular news with comments
 news.get('/news/:newsid([0-9]+)', isLoggedIn, newsController.getNewsById);
+// get one particular news with comments -> after submitting form
+news.post('/news/:newsid([0-9]+)', isLoggedIn, newsController.getNewsById);
 // get page with NEXT or PREV news - pagination
 news.get('/news/page/:pageid([0-9]+)', isLoggedIn, newsController.getPage);
 // post comment news

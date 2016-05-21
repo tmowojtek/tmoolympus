@@ -352,6 +352,7 @@ body {
     padding-bottom: 30px;
     text-align: center;
     width: 929px;
+    font-size: 0px;
     
     border-top: 1px solid rgba(67, 67, 73, 0.8);
     border-bottom: 1px solid rgba(67, 67, 73, 0.8);
@@ -411,6 +412,9 @@ body {
     background-color: rgba(202, 44, 118, 0.9);
 }
 
+#footer-copyrights {
+    background-color: beige;
+}
 
 /* END OF FOOTER */
 

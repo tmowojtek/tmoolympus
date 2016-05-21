@@ -324,6 +324,7 @@ body {
 #main-content {
     display: block;
     margin: 30px auto 0 auto;
+    padding-top: 20px;
     padding-left: 120px;
     padding-right: 120px;
     width: 691px;

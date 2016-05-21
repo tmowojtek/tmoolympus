@@ -60,7 +60,7 @@ UserSchema.pre('validate', function (callback) {
         console.log('self: ' + self);
 
         Role.findOne({
-            roleid: 1
+            rolename: 'user'
         }, function (err2, role) {
             if (err2)
                 throw err2;

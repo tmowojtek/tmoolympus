@@ -32,6 +32,7 @@ require('../config/routes').init(app); // zainicjalizowane w express przez stati
 if(!module.parent) {
 	server = http.createServer(app);
 	server.listen(config.port || 3000, function() {
+    //server.listen(process.env.OPENSHIFT_NODEJS_PORT || config.port, process.env.OPENSHIFT_NODEJS_IP || config.hostname, function () {
 		var addr = server.address();
 		console.log(
 			'%s is running, listening on %s:%s',

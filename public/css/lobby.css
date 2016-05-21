@@ -851,9 +851,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b2b30', end
 }
 
 
-/* -------------- */
+/* ------ FOOTER & PAGINATION -------- */
 
-#footer {
+#pagination {
     margin: 30px auto 20px auto;
     text-align: center;
     width: 931px;
@@ -861,15 +861,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b2b30', end
     font-weight: bold;
 }
 
-#footer div#pagination {
-    margin-bottom: 20px;
-}
-
-#footer div#pagination p {
+#pagination p {
     /*background-color: skyblue;*/
     border-radius: 5px;
     display: inline;
     padding: 3px 5px 3px 5px;
+}
+
+#footer {
+    margin: 30px auto 20px auto;
+    text-align: center;
+    width: 931px;
+    font-family: 'Browallia new';
+    font-weight: bold;
 }
 
 #footer div#copyrights p {

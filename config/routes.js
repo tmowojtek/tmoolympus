@@ -10,6 +10,14 @@ module.exports.init = function(app) {
 	app.use('/', require(path.join(routesPath, '/authenticate')));
 	// 2. news routing
 	app.use('/', require(path.join(routesPath, '/news')));
+    // 3. apply routing
+    app.use('/apply', require(path.join(routesPath, '/apply')));
+    // 4. history routing
+    app.use('/history', require(path.join(routesPath, '/history')));
+    // 5. roster routing
+    app.use('/roster', require(path.join(routesPath, '/roster')));
+    // 6. hall-of-fame routing
+    app.use('/halloffame', require(path.join(routesPath, '/halloffame')));
 	// --------------------------------------------------
 	// to do admin
 	// to do cup subpage
