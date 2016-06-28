@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        = The Myth of = homeground
+    </title>
+    <link type="text/css" rel="stylesheet" href="/static/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/news-id.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <% include const_elements/header %>
+    <!--
+    <div id="body-tmo-text-image"><img src="/static/_old/images/prototypes_v3/elementy/tmo-text-end.png" alt="tmo-text" /><img src="/static/_old/images/prototypes_v3/elementy/tmo-text.png" alt="tmo-text" /></div>
+    <div id="tmo-header">
+        <a id="tmo-logo-a-link" href="/"><img id="tmo-img" src="/static/_old/images/prototypes_v3/elementy/imageedit_33_3852496117_v8.png" alt="tmo-logo" /></a>
+    </div>
+    <div id="header-black-strip"></div>
+    -->
+    
+    <% include const_elements/nav-top %>
+    <!--
+    <div id="nav-blue-strip"></div>
+    <div id="tmo-nav-bar">
+        <div id="tmo-ts-ip-clipboard" class="not-active"></div>
+        <ul>
+            <li><a href="roster.html">ROSTER</a></li>
+            <li><a href="history.html">HISTORY</a></li>
+            <li><a class="not-active" href="">WARS</a></li>
+            <li><a href="halloffame.html">HALL OF FAME</a></li>
+            <li><a href="apply.html">APPLY</a></li>
+            <li><a class="not-active" href="">FORUM</a></li>
+        </ul>
+    </div>
+    -->
+    <% include const_elements/nav-bottom %>
+    <!--
+    <div id="black-to-white-strip"></div>
+    <div id="blue-orange-pink-strip"></div>
+    -->
+    
+    <div id="main-content" class="background-diagrent-white">
+        <!--<img id="news-img" src="/static/_old/images/prototypes_v3/news-logo/12980449_1153989034612320_1395700151_n.png" alt="news-img" />-->
+        <img id="news-img" src="<%= news.picturesrc %>" alt="news-img" />
+        <div id="news-title">
+            <p id="title-h">
+                <%= news.title %>
+            </p>
+            <div id="news-info">
+                <div id="news-info-category">
+                    <img src="<%= news._categoryid.picturesrc %>" alt="star" />
+                    <p>
+                        <%= news._categoryid.categoryname %>
+                    </p>
+                </div>
+                <div id="news-info-details">
+                    <p class="author">author: <a href="/user/<%= news._authorid.userid %>"><span class="nickname-color"><%= news._authorid.tag %></span></a></p>
+                    <p class="date">date:
+                        <%=   
+                                        news.date.getFullYear() + '-' +
+                                        ('0' + (news.date.getMonth()+1)).slice(-2) + '-' +
+                                        ('0' + news.date.getDate()).slice(-2) + ' ' +
+                                        ('0' + news.date.getHours()).slice(-2) + ':' + 
+                                        ('0' + news.date.getMinutes()).slice(-2);
+                                    %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="news-body">
+            <%- news.body %>
+        </div>
+
+        <div id="comments">
+
+            <% news.comments.forEach(function(comment) { %>
+                <div id="com<%= comment.commentid %>" class="comment">
+                    <div class="userpic">
+                        <img src="<%= comment._userid.userPictureSrc %>" alt="userpic" />
+                    </div>
+                    <div class="postcontent">
+                        <div class="header">
+                            <p><a href="/user/<%= comment._userid.userid %>"><span class="nickname-color"><%= comment._userid.tag %></span></a> <span class="comment-date"><%= comment.date.getFullYear() + '-' +
+                                        ('0' + (comment.date.getMonth()+1)).slice(-2) + '-' +
+                                        ('0' + comment.date.getDate()).slice(-2) + ' ' +
+                                        ('0' + comment.date.getHours()).slice(-2) + ':' + 
+                                        ('0' + comment.date.getMinutes()).slice(-2); %></span></p>
+                            <input class="reply-button" type="submit" value="reply" onclick="addCommentResponseBox(<%= comment.commentid %>);">
+                            <% if ( comment._userid.userid == loggedUserId ) { %>
+                                <input class="edit-button not-active" type="submit" value="edit">
+                            <% } %>
+                        </div>
+                        <div class="message">
+                            <%- comment.body %>
+                        </div>
+                    </div>
+                    <% var printComments; %>
+                        <% include functions/comments-function %>
+                            <% if (comment.comments.length > 0) { %>
+                                <%- printComments(comment.comments); %>
+                                    <% } %>
+                </div>
+            <% }); %>
+                    <!--
+                <div class="comment">
+                    <div class="userpic">
+                        <img src="/static/_old/userphoto.jpg" alt="userpic" />
+                    </div>
+                    <div class="postcontent">
+                        <div class="header">
+                            <p><a href="/user/id"><span class="nickname-color">smokie</span></a> <span class="comment-date">2016-05-11</span></p>
+                        </div>
+                        <div class="message">
+                            <p>Moja wiadomosc dla calego swiata</p>
+                        </div>
+                    </div>
+
+                    <div class="comment-in">
+                        <div class="userpic">
+                            <img src="/static/_old/userphoto.jpg" alt="userpic" />
+                        </div>
+                        <div class="postcontent">
+                            <div class="header">
+                                <p><a href="/user/id"><span class="nickname-color">smokie</span></a> <span class="comment-date">2016-05-11</span></p>
+                            </div>
+                            <div class="message">
+                                <p>Moja wiadomosc dla calego swiata</p>
+                            </div>
+                        </div>
+
+                        <div class="comment-in">
+                            <div class="userpic">
+                                <img src="/static/_old/userphoto.jpg" alt="userpic" />
+                            </div>
+                            <div class="postcontent">
+                                <div class="header">
+                                    <p><a href="/user/id"><span class="nickname-color">smokie</span></a> <span class="comment-date">2016-05-11</span></p>
+                                </div>
+                                <div class="message">
+                                    <p>Moja wiadomosc dla calego swiata ddd ddd ddd ddd ddddd dddd ddd dddd dddd ddd ddd</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="comment-in">
+                        <div class="userpic">
+                            <img src="/static/_old/userphoto.jpg" alt="userpic" />
+                        </div>
+                        <div class="postcontent">
+                            <div class="header">
+                                <p><a href="/user/id"><span class="nickname-color">smokie</span></a> <span class="comment-date">2016-05-11</span></p>
+                            </div>
+                            <div class="message">
+                                <p>Moja wiadomosc dla calego swiata</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="userpic">
+                        <img src="/static/_old/userphoto.jpg" alt="userpic" />
+                    </div>
+                    <div class="postcontent">
+                        <div class="header">
+                            <p><a href="/user/id"><span class="nickname-color">smokie</span></a> <span class="comment-date">2016-05-11</span></p>
+                        </div>
+                        <div class="message">
+                            <p>Moja wiadomosc dla calego swiata</p>
+                        </div>
+                    </div>
+
+                </div>
+            -->
+        </div>
+
+        <div id="main-reply">
+            <p>Reply to the main post:</p>
+            <form id="main-reply-form" method="post">
+                <input type="hidden" name="newsurl" value="/news/<%= news.newsid %>">
+                <input type="hidden" name="_news_id" value="<%= news._id %>">
+                <input type="hidden" name="parentCommentId" value="0">
+                <textarea id="reply-comment" name="replycomment" placeholder="Let us know what you think!"></textarea>
+                <input class="answer-button" type="submit" value="Answer">
+            </form>
+        </div>
+    </div>
+
+    <% include const_elements/footer %>
+    <!--
+    <div id="footer">
+        <p id="footer-copyrights">= THE MYTH OF = &copy; 2016</p>
+    </div>
+    -->
+    
+    <script type="text/javascript" src="/static/scripts/news-id.js"></script>
+</body>
+
+</html>

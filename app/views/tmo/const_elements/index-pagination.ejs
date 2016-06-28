@@ -1,0 +1,11 @@
+<div id="pagination">
+    <a href="/news">
+        <p id="footer-blue-background">ALL NEWS</p>
+    </a>
+    <a <% if(page < 2) { %> class="not-active" <% } %>href="/news/page/<% if(page > 1) { if(page > pages) { %><%= pages %><% } else { %><%= page-1 %><% }} else { %>1<% } %>">
+                <p id="footer-orange-background">PREVIOUS NEWS</p>
+            </a>
+    <a <% if(page>= pages) { %> class="not-active" <% } %>href="/news/page/<% if(page < pages) { %><%= page+1 %><% } else { %><%= pages %><% } %>">
+                <p id="footer-pink-background">MORE NEWS</p>
+            </a>
+</div>

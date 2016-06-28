@@ -1,5 +1,5 @@
 # folders and files to exclude
-__tmohttpfiles/
+# __tmohttpfiles/
 config/config.js
 log/
 node_modules/
