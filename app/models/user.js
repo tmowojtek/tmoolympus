@@ -56,7 +56,9 @@ var UserSchema = new Schema({
 UserSchema.pre('validate', function (callback) {
     var self = this;
 
-    self.pw = self.generateHash(self.pw);
+    if(!self.taglowercase)
+        self.taglowercase = self.tag.toLowerCase();
+    self.pw = User.generateHash(self.pw); // self -> User
 
     Counter.generateNextSequence('userid', function (err, result) {
         if (err)
@@ -66,23 +68,28 @@ UserSchema.pre('validate', function (callback) {
 
         console.log('self: ' + self);
 
-        Role.findOne({
-            rolename: 'user'
-        }, function (err2, role) {
-            if (err2)
-                throw err2;
+        if (!self._roleid) {
+            Role.findOne({
+                rolename: 'user'
+            }, function (err2, role) {
+                if (err2)
+                    throw err2;
 
-            self._roleid.push(role._id);
+                self._roleid.push(role._id);
 
-            console.log('self2: ' + self);
+                console.log('self2: ' + self);
 
+                callback();
+            });
+        } else {
+            console.log('user has already assigned role');
             callback();
-        });
+        }
     });
 });
 
 // generating a hash
-UserSchema.methods.generateHash = function (password) {
+UserSchema.statics.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 

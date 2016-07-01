@@ -23,7 +23,7 @@ var TeamSchema = new Schema({
     , }
     , logosrc: {
         type: String
-        , required: true
+        //, required: true
     }
     , createdby: {
         type: Schema.Types.ObjectId

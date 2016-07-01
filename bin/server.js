@@ -25,6 +25,7 @@ require('../config/models').init(app);
 require('../config/passport').init(app);
 require('../config/express').init(app); // contains connect-mongose for session-storage
 require('../config/routes').init(app); // zainicjalizowane w express przez static /public - test na unwilled req.
+require('../config/dbinit').init(app); // inicjalowanie bazy danych z niezbednymi wartosciami, potrzebnymi do uruchomienia strony
 
 /**
 * Start the app if not loaded by another module

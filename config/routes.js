@@ -18,8 +18,8 @@ module.exports.init = function(app) {
     app.use('/roster', require(path.join(routesPath, '/roster')));
     // 6. hall-of-fame routing
     app.use('/halloffame', require(path.join(routesPath, '/halloffame')));
-    // 7. admin routing
-    // app.use('/admin', require(path.join(routesPath, '/admin')));
+    // 7. settings routing - user panel / admin panel / wars panel / news panel
+     app.use('/settings', require(path.join(routesPath, '/settings')));
 	// --------------------------------------------------
     // to do clanwar subpage routing
 	// to do cup subpage
@@ -27,6 +27,8 @@ module.exports.init = function(app) {
     // --------------------------------------------------
     // 8. create necessary environment - before admin subpage existed
     app.use('/create', require(path.join(routesPath, '/create')));
+    // 9. logout routing
+    app.use('/logout', require(path.join(routesPath, '/logout')));
 	
 	// handling unwilled request?
 	app.get('/*', function (req, res) {

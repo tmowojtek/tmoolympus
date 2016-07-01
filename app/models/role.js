@@ -15,6 +15,11 @@ var RoleSchema = new Schema({
         , required: true
         , unique: true
     }
+    , color: {
+        type: String
+        , required: true
+        , unique: true
+    }
 });
 
 RoleSchema.pre('validate', function (callback) {

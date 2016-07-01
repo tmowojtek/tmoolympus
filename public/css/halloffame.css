@@ -347,7 +347,7 @@ body {
 }
 
 #main-content #content-hall {
-    background-image: url(../images/tmoolympus/halloffame/tmohalloffame-contentbg.png);
+    background-image: url(../images/tmoolympus/halloffame/tmohalloffame-contentbg.jpg);
     background-repeat: no-repeat;
     background-color: white;
     border: 1px solid rgba(67, 67, 73, 0.8);
@@ -449,10 +449,12 @@ body {
 
 #content-hall .section .league .last-match {
     font-size: 20px;
+    line-height: 22px;
 }
 
 #content-hall .section .league .special-thanks {
     font-size: 16px;
+    line-height: 18px;
 }
 
 /* HONORARY MEMBERS */
