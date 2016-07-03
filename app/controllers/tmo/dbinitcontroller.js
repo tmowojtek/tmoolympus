@@ -10,7 +10,6 @@ module.exports.init = function (dbinitConfig) {
     console.log('Initalizing db..');
 
     console.log('Checking roles..');
-
     Role.update({
         rolename: dbinitConfig.roles[0].name
     }, {
@@ -31,7 +30,7 @@ module.exports.init = function (dbinitConfig) {
             , color: 0
         }, function (err, role) {
             User.update({
-                tag: dbinitConfig.adminAccount.tag
+                taglowercase: dbinitConfig.adminAccount.tag.toLowerCase()
             }, {
                 $set: {
                     tag: dbinitConfig.adminAccount.tag
@@ -46,6 +45,33 @@ module.exports.init = function (dbinitConfig) {
                 upsert: true
             }, function (err, raw) {
                 if (err) throw err;
+
+                User.findOne({
+                    taglowercase: dbinitConfig.adminAccount.tag.toLowerCase()
+                }).select('_id').exec(function (err, adminUser) {
+                    if (err) throw err;
+
+                    if (adminUser) {
+                        console.log('Checking tmo team..');
+                        Team.update({
+                            teamname: dbinitConfig.tmoteam.name
+                        }, {
+                            $set: {
+                                teamname: dbinitConfig.tmoteam.name
+                                , teamnameshort: dbinitConfig.tmoteam.shortName
+                                , logosrc: dbinitConfig.tmoteam.clanLogoSrc
+                                , createdby: adminUser._id
+                            }
+                            , $addToSet: {
+                                members: adminUser._id
+                            }
+                        }, {
+                            upsert: true
+                        }).exec();
+                    } else {
+                        console.log('Couldn\'t find adminuser to create team with his credentials!!');
+                    }
+                });
             });
         });
     });
@@ -78,6 +104,18 @@ module.exports.init = function (dbinitConfig) {
         $set: {
             rolename: dbinitConfig.roles[3].name
             , color: dbinitConfig.roles[3].color
+        }
+    }, {
+        upsert: true
+    }).exec();
+
+    console.log('Checking news category..');
+    NewsCategory.update({
+        categoryname: dbinitConfig.defaultNewsCategory.catName
+    }, {
+        $set: {
+            categoryname: dbinitConfig.defaultNewsCategory.catName
+            , picturesrc: dbinitConfig.defaultNewsCategory.pictureSrc
         }
     }, {
         upsert: true

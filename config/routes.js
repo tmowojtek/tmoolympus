@@ -20,15 +20,16 @@ module.exports.init = function(app) {
     app.use('/halloffame', require(path.join(routesPath, '/halloffame')));
     // 7. settings routing - user panel / admin panel / wars panel / news panel
      app.use('/settings', require(path.join(routesPath, '/settings')));
-	// --------------------------------------------------
-    // to do clanwar subpage routing
-	// to do cup subpage
-	// to do ladder subpage
-    // --------------------------------------------------
     // 8. create necessary environment - before admin subpage existed
     app.use('/create', require(path.join(routesPath, '/create')));
     // 9. logout routing
     app.use('/logout', require(path.join(routesPath, '/logout')));
+    // --------------------------------------------------
+    // to do user profile subpage
+    // to do clanwar subpage routing
+	// to do cup subpage
+	// to do ladder subpage
+    // --------------------------------------------------
 	
 	// handling unwilled request?
 	app.get('/*', function (req, res) {
