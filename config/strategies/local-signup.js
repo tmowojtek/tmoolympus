@@ -16,6 +16,10 @@ module.exports = function() {
 			var email = req.body.registeremail.toLowerCase();
 			if ( !email || (email.trim() ==='') )
 				return done(null, false, req.flash('signupMessage', 'Unknown email'));
+			if ( !tag || (tag.trim() ==='') || (tag.length < 3) )
+				return done(null, false, req.flash('signupMessage', 'Invalid username - length(<3) or empty username'));
+			if ( !pw || (pw.trim() ==='') || (pw.length < 3) )
+				return done(null, false, req.flash('signupMessage', 'Invalid password - length(<3) or empty password'));
 			var taglowercase = tag.toLowerCase();
 			console.log(email); // !!!!!!!!!!!!!!!
 			User.find(

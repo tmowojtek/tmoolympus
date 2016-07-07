@@ -14,6 +14,11 @@ var app = express();
 var server;
 
 /**
+*   app version
+*/
+//app.version = '0.1';
+
+/**
 *Set express (app) variables
 */
 app.set('config', config);

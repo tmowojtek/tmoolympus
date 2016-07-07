@@ -1,0 +1,20 @@
+<div id="profile">
+    <div class="box">
+        <div class="left">
+            <p id="pic-text">Your active profile picture is:</p>
+            <img id="active-pic" ng-src="{{profileCtrl.activeUserPic}}" alt="profile-pic" />
+        </div>
+        <div class="right">
+            <p id="pic-upload-succ-text" ng-show="profileCtrl.successMsg">{{ profileCtrl.successMsg }}</p>
+            <p id="pic-upload-err-text" ng-show="profileCtrl.errorMsg">{{ profileCtrl.errorMsg }}</p>
+            <p id="pic-upload-text">Select picture to preview&amp;upload as your new profile image:</p>
+            <form ng-submit="profileCtrl.updatePic()">
+                <input type="file" id="pic-select-btn" accept="image/*" name="profilepic" ng-model="profileCtrl.selectedPic" custom-on-change="profileCtrl.loadPreviewPictureOnChange()" />
+                <img id="pic-preview" ng-show="profileCtrl.selectedPic" ng-src="{{profileCtrl.selectedPicSrc}}" />
+                <button type="submit" id="pic-up-btn">Upload</button>
+            </form>
+            <p id="pic-reset-text">You can always reset your avatar to the default one:</p>
+            <button id="pic-reset-btn" ng-click="profileCtrl.resetPic()">Reset</button>
+        </div>
+    </div>
+</div>

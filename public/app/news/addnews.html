@@ -1,0 +1,32 @@
+<div id="news">
+    <div class="box">
+        <p id="success-news" ng-show="newsCtrl.successMsg">{{ newsCtrl.successMsg }}</p>
+        <p id="error-news" ng-show="newsCtrl.errorMsg">{{ newsCtrl.errorMsg }}</p>
+        <form>
+            <div class="form-row">
+                <label>Title:</label>
+                <input type="text" name="title" ng-model="news.title" ng-minlength="4" ng-maxlength="30" />
+            </div>
+            <div class="form-row">
+                <label>Category:</label>
+                <select ng-options="category as category.categoryname for category in newsCtrl.newsCategories" ng-model="news.category"></select>
+            </div>
+            <div class="form-row">
+                <label>Visibility:</label>
+                <select ng-options="role as role.rolename for role in newsCtrl.newsRoles" ng-model="news.role"></select>
+            </div>
+            <div class="form-row">
+                <label>Picture:</label>
+                <input type="file" accept="image/*" ng-model="newsCtrl.selectedPic" custom-on-change="newsCtrl.loadPreviewPictureOnChange()" />
+                <img ng-show="newsCtrl.selectedPic" ng-src="{{newsCtrl.selectedPicSrc}}" />
+            </div>
+            <div class="form-row">
+                <label class="label-textarea">Content:</label>
+                <textarea id='textarea-content' ng-model="news.content"></textarea>
+            </div>
+            <div id="submit-btn" class="form-row">
+                <button ng-click="newsCtrl.addNews(news)">Post news</button>
+            </div>
+        </form>
+    </div>
+</div>

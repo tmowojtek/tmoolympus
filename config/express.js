@@ -12,6 +12,7 @@ var passport = require('passport');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var ejs = require('ejs');
+//var versionator = require('versionator');
 
 module.exports.init = function (app) {
     var root = app.get('root');
@@ -44,10 +45,18 @@ module.exports.init = function (app) {
      * Initialize routes & router
      */
     //require('../config/routes').init(app);
+    
+    /**
+    * Versionator - keeping up to date cached files
+    */
+    //var basic = versionator.createBasic('v' + app.version);
+    //app.locals.versionPath = basic.version;
+    
+    //app.use(basic.middleware);
 
     if (config.serveStatic) {
         app.use('/static', serveStatic(path.join(root, '../public'), {
-            maxAge: config.cache.maxAge
+            /*maxAge: config.cache.maxAge*/
         }));
     }
 

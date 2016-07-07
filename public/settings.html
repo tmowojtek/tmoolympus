@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="settingsApp">
+
+<head>
+    <title>
+        = The Myth of = homeground
+    </title>
+    <link type="text/css" rel="stylesheet" href="/static/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/settings.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/static/app/settings-app-module.js"></script>
+    <script src="/static/app/settings-app-config.js"></script>
+    <script src="/static/app/utils/file-reader-factory.js"></script>
+    <script src="/static/app/utils/picture-select-directive.js"></script>
+    <script src="/static/app/profile/profile-controller.js"></script>
+    <script src="/static/app/profile/profile-service.js"></script>
+    <script src="/static/app/news/news-controller.js"></script>
+    <script src="/static/app/news/news-service.js"></script>
+</head>
+
+<body>
+    <div id="body-tmo-text-image">
+        <img src="/static/images/tmoolympus/const_elements/tmoheader-text-end.png" alt="tmo-text" />
+        <img src="/static/images/tmoolympus/const_elements/tmoheader-text.png" alt="tmo-text" />
+    </div>
+    <div id="tmo-header">
+        <a id="tmo-logo-a-link" href="/"><img id="tmo-img" src="/static/images/tmoolympus/const_elements/tmoheader.png" alt="tmo-logo" /></a>
+    </div>
+    <div id="header-black-strip"></div>
+    <!-- -->
+    <div id="nav-blue-strip"></div>
+    <div id="tmo-nav-bar">
+        <!--<div id="nav-bar-blue-strip"></div>-->
+        <!-- -->
+        <!--<div id="nav-bar-menu-list"></div> -->
+        <div id="tmo-ts-ip-clipboard" class="not-active"></div>
+        <ul>
+            <li><a href="/roster">ROSTER</a></li>
+            <li><a href="/history">HISTORY</a></li>
+            <li><a class="not-active" href="">WARS</a></li>
+            <li><a href="/halloffame">HALL OF FAME</a></li>
+            <li><a href="/apply">APPLY</a></li>
+            <li><a class="not-active" href="">FORUM</a></li>
+        </ul>
+    </div>
+    <div id="black-to-white-strip"></div>
+    <div id="blue-orange-pink-strip"></div>
+
+    <div id="main-content">
+        <nav>
+            <ul>
+                <li><a class="selected" ui-sref="profile">profile</a></li>
+                <li><a ui-sref="addnews">+ news</a></li>
+                <li><a ui-sref="addwar">+ war</a></li>
+                <li><a ui-sref="adminpanel">admin</a></li>
+            </ul>
+        </nav>
+
+        <div id="settings-content-wrap" ui-view></div>
+    </div>
+
+    <div id="footer">
+        <div id="copyrights">
+            <p id="footer-copyrights">= THE MYTH OF = &copy; 2016</p>
+        </div>
+    </div>
+    <script src="/static/scripts/settings.js"></script>
+</body>
+
+</html>
