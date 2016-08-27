@@ -24,8 +24,11 @@ module.exports.init = function(app) {
     app.use('/create', require(path.join(routesPath, '/create')));
     // 9. logout routing
     app.use('/logout', require(path.join(routesPath, '/logout')));
+    // 10. wars list / warid routing
+    app.use('/wars', require(path.join(routesPath, '/wars')));
     // --------------------------------------------------
     // to do user profile subpage
+    app.use('/user', require(path.join(routesPath, '/user')));
     // to do clanwar subpage routing
 	// to do cup subpage
 	// to do ladder subpage

@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Counter = mongoose.model('Counter');
 var News = mongoose.model('News');
 var Comment = mongoose.model('Comment');
+var WarResult = mongoose.model('WarResult');
 
 module.exports.getLatestNewsAndWars = function (req, res) {
     console.log('[controller] im about to render news page');
@@ -26,10 +27,20 @@ module.exports.getLatestNewsAndWars = function (req, res) {
 
             console.log('result /index: ' + result);
 
-            res.render('tmo/index.ejs', {
-                latestNews: result
-                , page: 1
-                , pages: Math.ceil(count / 3)
+            WarResult.find({}).sort({
+                timestamp: 'desc'
+            }).select('-_id warid opponentName opponentTeamPic tmoTeamPic overallScore').limit(3).exec(function (err3, warresult) {
+                if (err3) throw err3;
+                
+                console.log('last wars: ' + warresult);
+                console.log('test: ' + warresult[0].overallScore.our);
+
+                res.render('tmo/index.ejs', {
+                    lastWars: warresult
+                    , latestNews: result
+                    , page: 1
+                    , pages: Math.ceil(count / 3)
+                });
             });
         });
     });
@@ -124,8 +135,8 @@ module.exports.getNewsById = function (req, res) {
             res.send('no news with such id :[');
         else
             res.render('tmo/news-id.ejs', {
-                news: news,
-                loggedUserId: req.user.userid
+                news: news
+                , loggedUserId: req.user.userid
             });
     });
 };
@@ -152,10 +163,17 @@ module.exports.getPage = function (req, res) {
 
             console.log('result /news/page: ' + result);
 
-            res.render('tmo/index.ejs', {
-                latestNews: result
-                , page: (page + 1)
-                , pages: Math.ceil(count / 3)
+            WarResult.find({}).sort({
+                timestamp: 'desc'
+            }).select('-_id warid opponentName opponentTeamPic tmoTeamPic overallScore').limit(3).exec(function (err3, warresult) {
+                if (err3) throw err3;
+
+                res.render('tmo/index.ejs', {
+                    lastWars: warresult
+                    , latestNews: result
+                    , page: (page + 1)
+                    , pages: Math.ceil(count / 3)
+                });
             });
 
             /*
@@ -227,7 +245,10 @@ module.exports.addComment = function (req, res) {
             // res.send('Updated following user' + updatedUser);
             newComment.save(function (err, newCom) {
                 if (err) throw err;
-                res.send({ msg: 'Comment added successfuly!', comId: newCom.commentid });
+                res.send({
+                    msg: 'Comment added successfuly!'
+                    , comId: newCom.commentid
+                });
             })
         });
     } else if (req.body.parentCommentId > 0) {
@@ -253,12 +274,16 @@ module.exports.addComment = function (req, res) {
                     new: true
                 }, function (err, updatedNews) {
                     if (err) throw err;
-                    res.send({ msg: 'Comment added successfuly!' });
+                    res.send({
+                        msg: 'Comment added successfuly!'
+                    });
                 });
             });
         });
     } else {
         console.log('im here');
-        res.send({ msg: 'Ups.. something went wrong mehhhhhhhh...' });
+        res.send({
+            msg: 'Ups.. something went wrong mehhhhhhhh...'
+        });
     }
 };

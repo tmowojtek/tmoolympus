@@ -1,23 +1,37 @@
-<div id="last-results-container">
+<% 
+var setColor = function(score) {
+    var warColor = 'orange';
+    if (score.our > score.their) {
+        warColor = 'blue';
+    } else if (score.our < score.their) {
+        warColor = 'pink';
+    }
+    return warColor;
+};
+%>
+  
+   <div id="last-results-container">
     <div id="last-wars-text" class="rotate">
         <p>LAST WARS</p>
     </div>
     <div id="results-container">
+       <% lastWars.forEach(function(lastWar) { %>
         <div class="single-result">
             <div class="clan-logo">
-                <a class="not-active" href=""><img src="/static/images/tmoolympus/const_elements/tmolastwars-tmoclanlogo.png" alt="home-img" /></a>
+                <a class="not-active" href=""><img src="<%= lastWar.tmoTeamPic %>" alt="home-img" /></a>
             </div>
             <div class="war-result">
-                <div class="test-wrap-div color-blue">
-                    <p><span class="">26</span><span class="color-black">:</span><span class="">17</span></p>
-                    <p class="details-link"><a class="not-active" href="">details</a></p>
+                <div class="test-wrap-div color-<%= setColor(lastWar.overallScore) %>">
+                    <p><span class=""><%= lastWar.overallScore.our %></span><span class="color-black">:</span><span class=""><%= lastWar.overallScore.their %></span></p>
+                    <p class="details-link"><a href="/war/<%= lastWar.warid %>">details</a></p>
                 </div>
             </div>
             <div class="clan-logo">
-                <a class="not-active" href=""><img src="/static/images/tmoolympus/const_elements/tmolastwars-godlike.png" alt="oponent-img" /></a>
+                <a class="not-active" href=""><img src="<%= lastWar.opponentTeamPic %>" alt="oponent-img" /></a>
             </div>
         </div>
-        <div class="single-result">
+        <% }); %>
+        <!--<div class="single-result">
             <div class="clan-logo">
                 <a class="not-active" href=""><img src="/static/images/tmoolympus/const_elements/tmolastwars-tmoclanlogo.png" alt="home-img" /></a>
             </div>
@@ -30,8 +44,8 @@
             <div class="clan-logo">
                 <a class="not-active" href=""><img src="/static/images/tmoolympus/const_elements/tmolastwars-9gag.png" alt="oponent-img" /></a>
             </div>
-        </div>
-        <div class="single-result">
+        </div>-->
+        <!--<div class="single-result">
             <div class="clan-logo">
                 <a class="not-active" href=""><img src="/static/images/tmoolympus/const_elements/tmolastwars-tmoclanlogo.png" alt="home-img" /></a>
             </div>
@@ -44,6 +58,6 @@
             <div class="clan-logo">
                 <a class="not-active" href=""><img src="/static/images/tmoolympus/const_elements/tmolastwars-cg.png" alt="oponent-img" /></a>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>

@@ -25,6 +25,7 @@ app.set('config', config);
 app.set('root', __dirname);
 
 require('../config/morgan').init(app);
+require('../config/dirinit').init(app);
 require('../config/mongoose').init(app);
 require('../config/models').init(app);
 require('../config/passport').init(app);

@@ -354,6 +354,7 @@ body {
 #main-content #news-img {
     display: block;
     max-width: 691px;
+    margin: auto;
 }
 
 #main-content #news-title {
@@ -486,7 +487,7 @@ input[type='submit'].edit-button {
 }
 
 #main-content #comments .comment .postcontent .message {
-    line-height: 16px;
+    line-height: 20px;
     vertical-align: middle;
 }
 
@@ -538,7 +539,7 @@ input[type='submit'].edit-button {
 }
 
 #main-content #comments .comment-in .postcontent .message {
-    line-height: 16px;
+    line-height: 20px;
     vertical-align: middle;
 }
 
@@ -685,5 +686,5 @@ input[type='submit'].edit-button {
 }
 
 .comment-date {
-    font-size: 16px;
+    font-size: 14px;
 }

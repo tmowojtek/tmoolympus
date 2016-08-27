@@ -5,7 +5,7 @@ angular.module('settingsApp').controller('NewsController', ['$scope', 'fileReade
     self.errorMsg = null;
     self.selectedPic = null;
     self.selectedPicSrc = null;
-    
+
     self.newsCategories = getNewsCategories;
     self.newsRoles = getRoles;
 
@@ -16,32 +16,37 @@ angular.module('settingsApp').controller('NewsController', ['$scope', 'fileReade
     };
 
     self.addNews = function (news) {
-        console.log(news);
         self.successMsg = null;
         self.errorMsg = null;
         if (!news) {
-            self.errorMsg = 'Fill in every field.';
+            self.errorMsg = ' Fill in every field.';
         } else {
             if (!news.title) {
-                self.errorMsg += 'fill in title 4+chars ';
+                self.errorMsg += ' fill in title 4+chars ';
             }
             if (!news.category.categoryname) {
-                self.errorMsg += 'fill in category ';
+                self.errorMsg += ' fill in category ';
             }
             if (!news.role.rolename) {
-                self.errorMsg += 'fill in visibility ';
+                self.errorMsg += ' fill in visibility ';
             }
             if (!news.content) {
-                self.errorMsg += 'fill in title ';
+                self.errorMsg += ' fill in title ';
             }
             if (!self.selectedPic) {
-                self.errorMsg += 'select pic ';
+                self.errorMsg += ' select pic ';
             } else {
                 news.selectedPic = self.selectedPic;
             }
             if (!self.errorMsg) {
                 console.log(news);
                 // to do service execute to upload
+                newsService.uploadNews(news).then(function (data) {
+                    self.successMsg = data;
+                    $scope.news = null;
+                }, function (data) {
+                    self.errorMsg = data;
+                });
             }
         }
     };

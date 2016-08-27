@@ -25,7 +25,7 @@ module.exports = function() {
 			User.find(
 				{ $or: [{ taglowercase: taglowercase }, { email: email } ]},
 				function(err, users) {
-					console.log(tag + ' ' + taglowercase + ' ' + pw + ' ' + req.body.registerrepw); // !!!!!!!!!!!!!!!
+					//console.log(tag + ' ' + taglowercase + ' ' + pw + ' ' + req.body.registerrepw); // !!!!!!!!!!!!!!!
 					console.log(users);
 					if(err) return done(err);
 					if (pw !== req.body.registerrepw)
@@ -43,12 +43,12 @@ module.exports = function() {
 						
                         var newUser = new User({ tag: tag,
                                                 taglowercase: taglowercase,
-                                                pw: pw,
-                                                /*pw: User.generateHash(pw),*/
+                                                /*pw: pw,*/
+                                                pw: User.generateHash(pw),
                                                 email: email
                                                });
                         
-                        console.log('newuser po konstruktorze: ' + newUser);
+                        //console.log('newuser po konstruktorze: ' + newUser);
 						
                         newUser.save(function(err) {
                             if (err)

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            = The Myth of = homeground
+        </title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="/static/css/reset.css">
+        <link type="text/css" rel="stylesheet" href="/static/css/war-list.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    </head>
+    
+    <body>
+        <% include const_elements/header %>
+        
+        <% include const_elements/nav-top %>
+        
+        <% include const_elements/nav-bottom %>
+        
+        <div id="main-content">
+            <div id="matches-stats">
+                <span class="color-blue">123 wins</span>
+                <span class="color-pink">5 loses</span>
+                <span class="color-orange">10 draws</span>
+            </div>
+            <div id="matches-wrap">
+                <div class="single-match">
+                    <div class="match-date">11.07.1995</div>
+                    <div class="home-team">The Myth of <img class="clan-img-home" src="_old/tmolastwars-tmoclanlogo.png" alt="home-logo" /> <span class="score-left color-blue">28</span></div>
+                    <div class="separator"><span class="color-blue">-</span></div>
+                    <div class="away-team"><span class="score-right color-blue">24</span> <img class="clan-img-away" src="_old/tmolastwars-9gag.png" alt="away-team" /> ^9gag/</div>
+                    <div class="details-link"><a class="ahref-match-details" href="">details</a></div>
+                </div>
+                <div class="single-match">
+                    <div class="match-date">11.07.1995</div>
+                    <div class="home-team">The Myth of <img class="clan-img-home" src="_old/tmolastwars-tmoclanlogo.png" alt="home-logo" /> <span class="score-left color-orange">24</span></div>
+                    <div class="separator"><span class="color-orange">-</span></div>
+                    <div class="away-team"><span class="score-right color-orange">24</span> <img class="clan-img-away" src="_old/tmolastwars-9gag.png" alt="away-team" /> ^9gag/</div>
+                    <div class="details-link"><a class="ahref-match-details" href="">details</a></div>
+                </div>
+                <div class="single-match">
+                    <div class="match-date">11.07.1996</div>
+                    <div class="home-team">The Myth of <img class="clan-img-home" src="_old/tmolastwars-tmoclanlogo.png" alt="home-logo" /> <span class="score-left color-pink">24</span></div>
+                    <div class="separator"><span class="color-pink">-</span></div>
+                    <div class="away-team"><span class="score-right color-pink">28</span> <img class="clan-img-away" src="_old/tmolastwars-9gag.png" alt="away-team" /> ^9gag/</div>
+                    <div class="details-link"><a class="ahref-match-details" href="">details</a></div>
+                </div>
+            </div>
+            <div id="load-more-matches">
+                <p>Load more matches..</p>
+            </div>
+        </div>
+        
+        <% include const_elements/footer %>
+        
+        <script type="text/javascript" src="/static/scripts/war-list.js"></script>
+    </body>
+</html>

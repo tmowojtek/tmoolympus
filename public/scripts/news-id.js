@@ -32,7 +32,7 @@ var addCommentResponseBox = function (commentid) {
 
         var styleItoComment = '';
         if ($('#com' + commentid).children('.comment-in').length > 0) {
-            styleItoComment = "style='background-image: url(/static/_old/def_I.png);background-repeat: no-repeat;background-position: 0px 0px;'";
+            styleItoComment = "style='background-image: url(/static/images/tmoolympus/const_elements/tmocomments-straight_l.png);background-repeat: no-repeat;background-position: 0px 0px;'";
         }
 
         $('#com' + commentid + ' .postcontent:eq(0)').after("<div id='comment-reply' " + styleItoComment + "><form id='comment-reply-form' method='post'><input type='hidden' name='newsurlin' value='/news/id'><input type='hidden' name='_news_idin' value='_news_id'><input type='hidden' name='parentCommentIdin' value='" + commentid + "'><textarea id='reply-comment' name='replycommentin' placeholder='Let him know what you think!'></textarea><input class='answer-button' type='submit' value='Answer'></form></div>");

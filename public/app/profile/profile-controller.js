@@ -56,17 +56,18 @@ angular.module('settingsApp').controller('ProfileController', ['$scope', 'fileRe
     self.resetPic = function () {
         profileService.resetUserPic().then(function (data) {
             if (data.message == '-1') {
-                self.successMsg = 'Try again later..';
-                self.errorMsg = null;
+                self.errorMsg = 'Try again later..';
+                self.successMsg = null;
             } else {
                 self.successMsg = data.message;
+                self.activeUserPic = data.src;
                 self.errorMsg = null;
             }
         }, function (data) {
             self.successMsg = null;
             self.errorMsg = 'Ups, smth went wrong?!';
         });
-        self.getActiveUserPic();
+        //self.getActiveUserPic();
         self.resetSelectedPic();
     };
 }]);

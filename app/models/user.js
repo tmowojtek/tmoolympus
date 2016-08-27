@@ -35,10 +35,12 @@ var UserSchema = new Schema({
     }
     , active: {
         type: Boolean
+        , required: true
         , default: true
     }
     , createdat: {
         type: Date
+        , required: true
         , default: Date.now
     }
     , _roleid: [{
@@ -56,36 +58,41 @@ var UserSchema = new Schema({
 UserSchema.pre('validate', function (callback) {
     var self = this;
 
-    if(!self.taglowercase)
+    if (!self.taglowercase)
         self.taglowercase = self.tag.toLowerCase();
-    self.pw = User.generateHash(self.pw); // self -> User
+    //self.pw = User.generateHash(self.pw); // self -> User
+    console.log('user id: ' + self.userid);
+    if (!self.userid) {
+        Counter.generateNextSequence('userid', function (err, result) {
+            if (err)
+                throw err;
 
-    Counter.generateNextSequence('userid', function (err, result) {
-        if (err)
-            throw err;
+            self.userid = result.seq;
 
-        self.userid = result.seq;
+            console.log('self: ' + self);
 
-        console.log('self: ' + self);
+            if (!self._roleid.length) {
+                Role.findOne({
+                    rolename: 'site user'
+                }, function (err2, role) {
+                    if (err2)
+                        throw err2;
 
-        if (!self._roleid) {
-            Role.findOne({
-                rolename: 'user'
-            }, function (err2, role) {
-                if (err2)
-                    throw err2;
+                    self._roleid.push(role._id);
 
-                self._roleid.push(role._id);
+                    console.log('self2: ' + self);
 
-                console.log('self2: ' + self);
-
+                    callback();
+                });
+            } else {
+                console.log('user has already assigned role');
                 callback();
-            });
-        } else {
-            console.log('user has already assigned role');
-            callback();
-        }
-    });
+            }
+        });
+    } else {
+        console.log('zmiany w userze ale to nie jest rejestracja! - update');
+        callback();
+    }
 });
 
 // generating a hash

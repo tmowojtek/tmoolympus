@@ -15,7 +15,7 @@ var CommentSchema = new Schema({
         type: Schema.Types.ObjectId
         , ref: 'User',
         autopopulate: {
-            select: 'userid tag -_id'
+            select: 'userid tag userPictureSrc -_id'
         }
     }
     , _newsid: {

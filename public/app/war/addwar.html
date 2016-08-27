@@ -1,1 +1,95 @@
-<p>war</p>
+<div id="addwar">
+    <div class="warErrorMsg" ng-show="warCtrl.errorMsg">
+        {{ warCtrl.errorMsg }}
+    </div>
+    <div class="warSuccessMsg" ng-show="warCtrl.successMsg">
+        {{ warCtrl.successMsg }}
+    </div>
+    <form>
+        <div class="form-row">
+            <p class="fieldError">{{ warCtrl.opponentError }}</p>
+            <label>Opponent:</label>
+            <select id="opponent-name-select" ng-options="clan as clan.teamname for clan in warCtrl.tmoClansArr" ng-model="selectedClan" ng-change="warCtrl.updateSelectedOpponentClan()">
+                <option value=""></option>
+            </select>
+            <span>type if not to listed:</span>
+            <input id="opponent-name-typed" type="text" name="opponent" ng-model="typedClan" ng-change="warCtrl.updateTypedOpponentClan()" ng-minlength="1" ng-maxlength="30" />
+        </div>
+
+        <div class="form-row">
+            <p class="fieldError">{{ warCtrl.tmoLineUpError }}</p>
+            <label>tmo line-up:</label>
+            <select ng-options="member for member in warCtrl.tmoMembersArr" ng-model="clanmember"></select>
+            <button class="add-member" ng-click="warCtrl.addSub(clanmember)">+ member</button>
+            <select ng-options="siteUser as siteUser.tag for siteUser in warCtrl.usersList | notInArray:warCtrl.tmoMembersArr" ng-model="siteUserTmoSub"></select>
+            <button class="add-siteusersub" ng-click="warCtrl.addSub(siteUserTmoSub.tag)">+ site user</button>
+            <input type="text" class="sub-input" ng-model="sub" />
+            <button class="btn-plus-sub" type="button" ng-click="warCtrl.addSub(sub)">+ sub</button>
+            <div class="playerslot" ng-repeat="tmoPlayer in warCtrl.tmoLineUp track by $index">
+                <button class="btn-minus" type="button" ng-click="warCtrl.removeSub($index)">-</button><span>{{ tmoPlayer }}</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <p class="fieldError">{{ warCtrl.enemyLineUpError }}</p>
+            <label>enemy line-up:</label>
+            <select ng-options="user as user.tag for user in warCtrl.usersList" ng-model="selectedUser"></select>
+            <button class="add-member" ng-click="warCtrl.addOpponentOb(selectedUser)">+ user</button>
+            <input type="text" class="sub-input" ng-model="typedOpponent" />
+            <button class="btn-plus-sub" type="button" ng-click="warCtrl.addOpponent(typedOpponent)">+ opponent</button>
+            <div class="playerslot" ng-repeat="opponentPlayer in warCtrl.opponentLineUp track by $index">
+                <button class="btn-minus" type="button" ng-click="warCtrl.removeOpponent($index)">-</button><span>{{ opponentPlayer }}</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <p class="fieldError">{{ warCtrl.mapsPlayedError }}</p>
+            <label>add maps played:</label>
+            <select ng-options="map for map in warCtrl.mapList | orderBy: map" ng-model="selectedMap"></select>
+            <button type="button" class="btn-plus" ng-click="warCtrl.addPlayedMap(selectedMap)">+ map</button>
+            <div class="mapslot" ng-repeat="x in warCtrl.mapsPlayed">
+                <button class="btn-minus" type="button" ng-click="warCtrl.removePlayedMap($index)">-</button><span>{{x}}</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <p class="fieldError">{{ warCtrl.partialScoresError }}</p>
+            <label>please add scores:</label><span>our</span>
+            <input class="score" type="number" ng-model="our"><span>their</span>
+            <input class="score" type="number" ng-model="their">
+            <button class="btn-plus" ng-click="warCtrl.addPartialScore(our, their)">+ partial score</button>
+            <div class="resultslot" ng-repeat="partial in warCtrl.warResults">
+                <button class="btn-minus" type="button" ng-click="warCtrl.removePartialScore($index)">-</button><span>{{ partial.our }} : {{ partial.their}}</span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <p class="fieldError">{{ warCtrl.anyScreensError }}</p>
+            <label>any screens?</label>
+            <button class="btn-plus-image" ng-click="warCtrl.addImageDialogBox()">+ image</button>
+            <div class="imageslot" ng-repeat="image in warCtrl.warImages">
+                <button class="btn-minus" type="button" ng-click="warCtrl.removeWarImageDialogBox($index)">-</button>
+                <input type="file" accept="image/*" name="warpics" ng-model="image.file" bind-file="" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label>anyone mvp?</label>
+            <select ng-options="player for player in warCtrl.possibleMvp | orderBy: player" ng-model="warCtrl.selectedMvp">
+                <option value=""></option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <p class="fieldError">{{ warCtrl.matchReportError }}</p>
+            <label id="report-label">match report:</label>
+            <textarea id="textarea-report" ng-model="warCtrl.warReport" placeholder="What happened?!">
+            </textarea>
+        </div>
+
+        <div class="form-row">
+            <button id="btn-send" type="button" ng-click="warCtrl.postWar()">post war</button>
+        </div>
+
+    </form>
+</div>

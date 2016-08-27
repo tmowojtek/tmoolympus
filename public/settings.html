@@ -14,10 +14,13 @@
     <script src="/static/app/settings-app-config.js"></script>
     <script src="/static/app/utils/file-reader-factory.js"></script>
     <script src="/static/app/utils/picture-select-directive.js"></script>
+    <script src="/static/app/utils/custom-filters.js"></script>
     <script src="/static/app/profile/profile-controller.js"></script>
     <script src="/static/app/profile/profile-service.js"></script>
     <script src="/static/app/news/news-controller.js"></script>
     <script src="/static/app/news/news-service.js"></script>
+    <script src="/static/app/war/war-controller.js"></script>
+    <script src="/static/app/war/war-service.js"></script>
 </head>
 
 <body>
@@ -51,10 +54,10 @@
     <div id="main-content">
         <nav>
             <ul>
-                <li><a class="selected" ui-sref="profile">profile</a></li>
-                <li><a ui-sref="addnews">+ news</a></li>
-                <li><a ui-sref="addwar">+ war</a></li>
-                <li><a ui-sref="adminpanel">admin</a></li>
+                <li><a id="sprofile" class="selected" ui-sref="profile">profile</a></li>
+                <li><a id="saddnews" ui-sref="addnews">+ news</a></li>
+                <li><a id="saddwar" ui-sref="addwar">+ war</a></li>
+                <li><a id="sadminpanel" ui-sref="adminpanel">admin</a></li>
             </ul>
         </nav>
 

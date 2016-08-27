@@ -40,8 +40,38 @@ angular.module('settingsApp').config(['$stateProvider', '$urlRouterProvider', fu
         , templateUrl: '/static/app/news/addnews.html'
         , controller: 'NewsController as newsCtrl'
     }).state('addwar', {
-        url: '/addwar'
+        resolve: {
+            getTmoClansArr: function (warService) {
+                return warService.getTmoClansArr().then(function (data) {
+                    console.log('get membbers');
+                    return data;
+                }, function (data) {
+                    console.log('error get members');
+                    return null;
+                });
+            }
+            , getTmoMembers: function (warService) {
+                return warService.getTmoMembers().then(function (data) {
+                    console.log('get membbers');
+                    return data;
+                }, function (data) {
+                    console.log('error get members');
+                    return null;
+                });
+            }
+            , getUsersList: function (warService) {
+                return warService.getUsersList().then(function (data) {
+                    console.log('get userslist');
+                    return data;
+                }, function (data) {
+                    console.log('error get uesrslist');
+                    return null;
+                });
+            }
+        }
+        , url: '/addwar'
         , templateUrl: '/static/app/war/addwar.html'
+        , controller: 'WarController as warCtrl'
     }).state('adminpanel', {
         url: '/adminpanel'
         , templateUrl: '/static/app/adminpanel/adminpanel.html'
