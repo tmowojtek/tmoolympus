@@ -48,9 +48,30 @@ var upload_multi = mult.array('file', 10);
     storage: storage
 }).array('file', 10);*/
 
+/*
 module.exports.getSettings = function (req, res) {
     res.sendFile(path.join(__dirname, '../../../public/settings.html'));
 };
+*/
+
+module.exports.getSettings = function(req, res) {
+    User.findOne({_id: req.user._id}).populate('_roleid', '-_id rolename').select('-_id _roleid').exec(function(err, user) {
+        if(err) {
+            res.send('Settings page cannot be loaded.');
+        } else {
+            var roles = [];
+            //console.log(user);
+            if(user._roleid) {
+                user._roleid.forEach(function(role) {
+                    roles.push(role.rolename);
+                });
+            }
+            res.render('tmo/settings', {
+                roles: roles
+            });
+        }
+    });
+}
 
 module.exports.userUpdatePic = function (req, res) {
     upload(req, res, function (err) {
@@ -553,6 +574,13 @@ module.exports.uploadWar = function (req, res) {
                         our: overallour
                         , their: overalltheir
                     };
+                    if (overallour > overalltheir) {
+                        newWar.warStatus = 'WIN';
+                    } else if (overallour < overalltheir) {
+                        newWar.warStatus = 'LOST';
+                    } else {
+                        newWar.warStatus = 'DRAW';
+                    }
 
                     Team.findOne({
                         teamname: req.body.opponentName

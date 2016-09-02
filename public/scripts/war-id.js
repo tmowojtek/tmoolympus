@@ -4,20 +4,28 @@ var postAddComment = function (event, serializedFormInputArray) {
     console.log(serializedFormInputArray);
     $.ajax({
         type: 'POST'
-        , url: serializedFormInputArray[0].value
+        , url: $('input[name=warurl]').val() + '/addcomment' //serializedFormInputArray[0].value
+
+        
         , data: {
-            _news_id: serializedFormInputArray[1].value
+            _war_id: $('input[name=_war_id]').val() //serializedFormInputArray[1].value
+
+            
             , parentCommentId: serializedFormInputArray[2].value
             , _body: serializedFormInputArray[3].value
         }
         , cache: false
         , timeout: 10000
     }).done(function (data) {
-        console.log('post comment done: ' + data);
-        event.preventDefault();
+        console.log('post comment done: ' + data.msg);
+        alert(data.msg);
+        //event.preventDefault();
+        window.location.href = $('input[name=warurl]').val();
     }).fail(function (data) {
-        console.log('error data: ' + data);
-        event.preventDefault();
+        console.log('error data: ' + data.msg);
+        alert(data.msg);
+        window.location.href = $('input[name=warurl]').val();
+        //event.preventDefault();
     });
 }
 
@@ -32,7 +40,7 @@ var addCommentResponseBox = function (commentid) {
             styleItoComment = "style='background-image: url(/static/images/tmoolympus/const_elements/tmocomments-straight_l.png);background-repeat: no-repeat;background-position: 0px 0px;'";
         }
 
-        $('#com' + commentid + ' .postcontent:eq(0)').after("<div id='comment-reply' " + styleItoComment + "><form id='comment-reply-form' method='post'><input type='hidden' name='newsurl' value='/news/id'><input type='hidden' name='_news_id' value='_news_id'><input type='hidden' name='parentCommentId' value='-1'><textarea id='reply-comment' name='replycommentin' placeholder='Let him know what you think!'></textarea><input class='answer-button' type='submit' value='Answer'></form></div>");
+        $('#com' + commentid + ' .postcontent:eq(0)').after("<div id='comment-reply' " + styleItoComment + "><form id='comment-reply-form' method='post'><input type='hidden' name='warurlin' value='/war/id'><input type='hidden' name='_war_idin' value='_war_id'><input type='hidden' name='parentCommentIdIn' value='" + commentid + "'><textarea id='reply-comment' name='replycommentin' placeholder='Let him know what you think!'></textarea><input class='answer-button' type='submit' value='Answer'></form></div>");
 
         /*
         $('#com' + commentid).children('.postcontent').children('.message').append("<div id='comment-reply' " + styleItoComment +"><form id='comment-reply-form' method='post'><textarea id='reply-comment' name='replycommentin' placeholder='Let him know what you think!'></textarea><input class='answer-button' type='submit' value='Answer'></form></div>");
@@ -41,11 +49,13 @@ var addCommentResponseBox = function (commentid) {
         $('#comment-reply-form').submit(function (event) {
             if ($('textarea[name=replycommentin]').val().trim().length < 4) {
                 alert('Enter 4 characters at least..');
-                event.preventDefault();
+                //event.preventDefault();
+                return false;
             } else {
                 //event.preventDefault();
                 var serializedFormInputArray = $('#comment-reply-form').serializeArray();
                 postAddComment(event, serializedFormInputArray);
+                return false;
             }
         });
     }
@@ -77,19 +87,51 @@ $(document).ready(function () {
         modal.style.display = "none";
     }
     */
-    
-    modal.onclick = function() {
+
+    modal.onclick = function () {
         modal.style.display = "none";
-    }
-    
+    };
+
     $('#main-reply-form').submit(function (event) {
         if ($('textarea[name=replycomment]').val().trim().length < 4) {
             alert('Enter 4 characters at least..');
-            event.preventDefault();
+            //event.preventDefault();
+            return false;
         } else {
             //event.preventDefault();
             var serializedFormInputArray = $('#main-reply-form').serializeArray();
             postAddComment(event, serializedFormInputArray);
+            return false;
+        }
+    });
+
+    $('#delete-war p').click(function () {
+        if (confirm('Do you want to delete this war?')) {
+
+
+            $.ajax({
+                type: 'DELETE'
+                , url: '/war/delete/' + $('input[name=warid]').val() //serializedFormInputArray[0].value  
+                    
+                , data: {}
+                , cache: false
+                , timeout: 10000
+            }).done(function (data) {
+                if (data.msg == '-1') {
+                    alert(data.msgDetail);
+                } else {
+                    console.log('war deleted: ' + data.msg);
+                    alert(data.msg);
+                    //event.preventDefault();
+                    window.location.href = '/wars'
+                }
+            }).fail(function (data) {
+                console.log('error data: ' + data.msg);
+                alert(data.msg);
+                //event.preventDefault();
+            });
+        } else {
+            console.log('confirm cancelled');
         }
     });
 });

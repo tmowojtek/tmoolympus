@@ -77,6 +77,22 @@ var WarResultSchema = new Schema({
         , required: true
         , default: Date.now
     }
+    , warStatus: {
+        type: String
+        , required: true
+    }
+    , commentscount: {
+        type: Number
+        , required: true
+        , default: 0
+    }
+    , comments: [{
+        type: Schema.Types.ObjectId
+        , ref: 'Comment'
+        , autopopulate: {
+            select: '-_id'
+        }
+    }]
 });
 
 WarResultSchema.pre('validate', function (callback) {

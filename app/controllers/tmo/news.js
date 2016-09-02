@@ -8,7 +8,7 @@ var WarResult = mongoose.model('WarResult');
 
 module.exports.getLatestNewsAndWars = function (req, res) {
     console.log('[controller] im about to render news page');
-
+    
     console.log('user roles: ' + req.user._roleid);
     News.count({
         _visibility: {

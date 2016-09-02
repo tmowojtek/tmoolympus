@@ -17,34 +17,37 @@
         
         <% include const_elements/nav-bottom %>
         
+        <% 
+            var setColor = function(score) {
+                var warColor = 'orange';
+                if (score.our > score.their) {
+                    warColor = 'blue';
+                } else if (score.our < score.their) {
+                    warColor = 'pink';
+                }
+                return warColor;
+            };
+        
+        %>
+        
         <div id="main-content">
             <div id="matches-stats">
-                <span class="color-blue">123 wins</span>
-                <span class="color-pink">5 loses</span>
-                <span class="color-orange">10 draws</span>
+                <span class="color-blue"><%= stats.win %> win</span>
+                <span class="color-pink"><%= stats.lost %> loses</span>
+                <span class="color-orange"><%= stats.draw %> draws</span>
             </div>
             <div id="matches-wrap">
+            <% wars.forEach(function(war) { %>
                 <div class="single-match">
-                    <div class="match-date">11.07.1995</div>
-                    <div class="home-team">The Myth of <img class="clan-img-home" src="_old/tmolastwars-tmoclanlogo.png" alt="home-logo" /> <span class="score-left color-blue">28</span></div>
-                    <div class="separator"><span class="color-blue">-</span></div>
-                    <div class="away-team"><span class="score-right color-blue">24</span> <img class="clan-img-away" src="_old/tmolastwars-9gag.png" alt="away-team" /> ^9gag/</div>
-                    <div class="details-link"><a class="ahref-match-details" href="">details</a></div>
+                    <div class="match-date">
+                        <%= ('0' + war.timestamp.getDate()).slice(-2) + '.' + ('0' + (war.timestamp.getMonth()+1)).slice(-2) + '.' + war.timestamp.getFullYear(); %>
+                    </div>
+                    <div class="home-team">The Myth of <img class="clan-img-home" src="<%= war.tmoTeamPic %>" alt="home-logo" /> <span class="score-left color-<%= setColor(war.overallScore) %>"><%= war.overallScore.our %></span></div>
+                    <div class="separator"><span class="color-<%= setColor(war.overallScore) %>">-</span></div>
+                    <div class="away-team"><span class="score-right color-<%= setColor(war.overallScore) %>"><%= war.overallScore.their %></span> <img class="clan-img-away" src="<%= war.opponentTeamPic %>" alt="away-team" /> <%= war.opponentName %></div>
+                    <div class="details-link"><a class="ahref-match-details" href="/war/<%= war.warid %>">details</a></div>
                 </div>
-                <div class="single-match">
-                    <div class="match-date">11.07.1995</div>
-                    <div class="home-team">The Myth of <img class="clan-img-home" src="_old/tmolastwars-tmoclanlogo.png" alt="home-logo" /> <span class="score-left color-orange">24</span></div>
-                    <div class="separator"><span class="color-orange">-</span></div>
-                    <div class="away-team"><span class="score-right color-orange">24</span> <img class="clan-img-away" src="_old/tmolastwars-9gag.png" alt="away-team" /> ^9gag/</div>
-                    <div class="details-link"><a class="ahref-match-details" href="">details</a></div>
-                </div>
-                <div class="single-match">
-                    <div class="match-date">11.07.1996</div>
-                    <div class="home-team">The Myth of <img class="clan-img-home" src="_old/tmolastwars-tmoclanlogo.png" alt="home-logo" /> <span class="score-left color-pink">24</span></div>
-                    <div class="separator"><span class="color-pink">-</span></div>
-                    <div class="away-team"><span class="score-right color-pink">28</span> <img class="clan-img-away" src="_old/tmolastwars-9gag.png" alt="away-team" /> ^9gag/</div>
-                    <div class="details-link"><a class="ahref-match-details" href="">details</a></div>
-                </div>
+            <% }); %>
             </div>
             <div id="load-more-matches">
                 <p>Load more matches..</p>

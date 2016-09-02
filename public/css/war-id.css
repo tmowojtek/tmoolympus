@@ -328,8 +328,25 @@ body {
     margin: 30px auto 0 auto;
     width: 871px;
     padding: 30px;
+    position: relative;
     font-family: Lato;
     font-size: 16px;
+}
+
+#delete-war {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+#delete-war p {
+    color: darkgrey;
+    font-size: 22px;
+}
+
+#delete-war p:hover {
+    color: firebrick;
+    cursor: pointer;
 }
 
 #match-date {
@@ -422,6 +439,7 @@ body {
     display: inline-block;
     margin-right: 10%;
     text-align: left;
+    vertical-align: top;
 }
 
 #maps-played ul {
@@ -437,6 +455,7 @@ body {
     display: inline-block;
     margin-left: 10%;
     text-align: right;
+    vertical-align: top;
 }
 
 #partial-scores ul {
@@ -851,6 +870,10 @@ input[type='submit'].edit-button {
 
 #footer-pink-background {
     background-color: rgba(202, 44, 118, 0.9);
+}
+
+#footer-copyrights {
+    background-color: beige;
 }
 
 

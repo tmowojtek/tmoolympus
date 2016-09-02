@@ -7,7 +7,7 @@ var warsController = require('../controllers/tmo/wars');
 
 // renders wars list
 wars.get('/', isLoggedIn, warsController.getWarsList);
-// renders war with specific id
-wars.get('/:warid([0-9]+)', isLoggedIn, warsController.getWarById);
+// returns next batch of wars
+wars.get('/:nextBatch([0-9]+)', isLoggedIn, warsController.getNextWarsBatch);
 
 module.exports = wars;

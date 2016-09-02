@@ -1,12 +1,24 @@
 'use strict'
 
+var setColor = function (score) {
+    var warColor = 'orange';
+    if (score.our > score.their) {
+        warColor = 'blue';
+    } else if (score.our < score.their) {
+        warColor = 'pink';
+    }
+    return warColor;
+};
+
 $(document).ready(function () {
+    var nextBatch = 1;
+    
     $('#load-more-matches p').click(function () {
         var el = $(this);
 
         $.ajax({
             type: 'GET'
-            , url: '/wars'
+            , url: '/wars/' + nextBatch
             , dataType: 'JSON'
             , success: function (data) {
                 if (data.msg == '-1') {
@@ -15,10 +27,12 @@ $(document).ready(function () {
                 } else if (data.msg == '1') {
                     var matchesWrap = $('#matches-wrap');
                     // to do uzueplnic niezbedne pola w stringu
-                    data.matches.forEach(function (match) {
-                        var newSingleMatchEntry = "<div class='single-match'><div class='match-date'>11.07.1995</div><div class='home-team'>The Myth of <img class='clan-img-home' src='_old/tmolastwars-tmoclanlogo.png' alt='home-logo' /> <span class='score-left color-blue'>28</span></div><div class='separator'><span class='color-blue'>-</span></div><div class='away-team'><span class='score-right color-blue'>24</span> <img class='clan-img-away' src='_old/tmolastwars-9gag.png' alt='away-team' /> ^9gag/</div><div class='details-link'><a class='ahref-match-details' href=''>details</a></div></div>";
+                    data.wars.forEach(function (match) {
+                        var matchDate = new Date(match.timestamp);
+                        var newSingleMatchEntry = "<div class='single-match'><div class='match-date'>" + ('0' + matchDate.getDate()).slice(-2) + '.' + ('0' + (matchDate.getMonth()+1)).slice(-2) + '.' + matchDate.getFullYear() + "</div><div class='home-team'>The Myth of <img class='clan-img-home' src='" + match.tmoTeamPic +"' /> <span class='score-left color-"+ setColor(match.overallScore) +"'>"+ match.overallScore.our +"</span></div><div class='separator'><span class='color-"+ setColor(match.overallScore) +"'>-</span></div><div class='away-team'><span class='score-right color-"+ setColor(match.overallScore) +"'>"+ match.overallScore.their +"</span> <img class='clan-img-away' src='"+ match.opponentTeamPic +"' alt='away-team' /> "+ match.opponentName +"</div><div class='details-link'><a class='ahref-match-details' href='/war/" + match.warid +"'>details</a></div></div>";
                         matchesWrap.append(newSingleMatchEntry);
                     });
+                    nextBatch+=1;
                 } else if (data.msg == '2') {
                     el.addClass('not-active');
                     el.text('There are no more old wars at the moment!');

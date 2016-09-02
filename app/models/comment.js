@@ -22,6 +22,10 @@ var CommentSchema = new Schema({
         type: Schema.Types.ObjectId
         , ref: 'News'
     }
+    , _warid: {
+        type: Schema.Types.ObjectId
+        , ref: 'WarResult'
+    }
     , body: {
         type: String
         , required: true
