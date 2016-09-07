@@ -14,8 +14,8 @@ module.exports = function() {
 		},
 		function(req, tag, pw, done) {
 			var email = req.body.registeremail.toLowerCase();
-			if ( !email || (email.trim() ==='') )
-				return done(null, false, req.flash('signupMessage', 'Unknown email'));
+			if ( !email || (email.trim() ==='') || ((email.match(/@/g) || []).length != 1) )
+				return done(null, false, req.flash('signupMessage', 'Unknown or incorrect email'));
 			if ( !tag || (tag.trim() ==='') || (tag.length < 3) )
 				return done(null, false, req.flash('signupMessage', 'Invalid username - length(<3) or empty username'));
 			if ( !pw || (pw.trim() ==='') || (pw.length < 3) )

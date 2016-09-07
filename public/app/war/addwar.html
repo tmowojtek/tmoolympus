@@ -88,7 +88,7 @@
         </div>
 
         <div class="form-row">
-            <button id="btn-send" type="button" ng-click="warCtrl.postWar()">post war</button>
+            <button id="btn-send" type="button" ng-disabled="warCtrl.addWarBtnIsDisabled" ng-click="warCtrl.postWar()">post war</button>
         </div>
 
     </form>

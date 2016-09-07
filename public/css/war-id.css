@@ -537,12 +537,22 @@ body {
     opacity: 0.7;
 }
 
+#mvp-player {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#mvp-player .italic {
+    padding-left: 10px;
+    font-style: italic;
+}
+
 #war-report {
     border: 1px solid;
     border-color: bisque;
     background-color: rgba(255, 255, 255, 0.7);
     width: 400px;
-    margin: 60px auto 30px auto;
+    margin: 40px auto 30px auto;
     padding: 20px;
 }
 
@@ -573,7 +583,8 @@ body {
 
 .comment-wrapper .comment .userpic img {
     display: block;
-    border-radius: 50%;
+    width: 48px;
+    max-height: 48px;
 }
 
 .comment-wrapper .comment .postcontent {
@@ -651,7 +662,8 @@ input[type='submit'].edit-button {
 
 .comment-wrapper .comment-in .userpic img {
     display: block;
-    border-radius: 50%;
+    width: 48px;
+    max-width: 48px;
 }
 
 .comment-wrapper .comment-in .postcontent {

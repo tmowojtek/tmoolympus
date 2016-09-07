@@ -25,7 +25,7 @@
                 <textarea id='textarea-content' ng-model="news.content" placeholder="Feel the journalism!"></textarea>
             </div>
             <div id="submit-btn" class="form-row">
-                <button ng-click="newsCtrl.addNews(news)">Post news</button>
+                <button ng-disabled="newsCtrl.addNewsBtnIsDisabled" ng-click="newsCtrl.addNews(news)">Post news</button>
             </div>
         </form>
     </div>

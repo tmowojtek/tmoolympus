@@ -70,6 +70,36 @@ var main = function () {
             //return false;
         }
     });
+    
+    $('#delete-news p').click(function () {
+        if (confirm('Do you want to delete this news?')) {
+
+
+            $.ajax({
+                type: 'DELETE'
+                , url: '/news/delete/' + $('input[name=newsid]').val() //serializedFormInputArray[0].value  
+                    
+                , data: {}
+                , cache: false
+                , timeout: 10000
+            }).done(function (data) {
+                if (data.msg == '-1') {
+                    alert(data.msgDetail);
+                } else {
+                    console.log('news deleted: ' + data.msg);
+                    alert(data.msg);
+                    //event.preventDefault();
+                    window.location.href = '/news'
+                }
+            }).fail(function (data) {
+                console.log('error data: ' + data.msg);
+                alert(data.msg);
+                //event.preventDefault();
+            });
+        } else {
+            console.log('confirm cancelled');
+        }
+    });
 };
 
 $(document).ready(main);

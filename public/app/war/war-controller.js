@@ -18,6 +18,8 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
     self.partialScoresError = null;
     self.anyScreensError = null;
     self.matchReportError = null;
+    
+    self.addWarBtnIsDisabled = false;
 
     self.mapList = ['carentan', 'dawnville', 'brecourt', 'tigertown', 'neuville', 'depot', 'chateau', 'hurtgen', 'railyard', 'rocket', 'ship', 'harbor', 'bocage', 'stalingrad', 'german_town', 'powcamp'];
     self.possibleMvp = [];
@@ -170,6 +172,8 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
     };
 
     self.postWar = function () {
+        self.addWarBtnIsDisabled = true;
+        
         self.errorMsg = null;
         self.successMsg = null;
         self.opponentError = null;
@@ -239,9 +243,15 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
                 self.selectedMvp = null;
                 self.possibleMvp = [];
                 self.warReport = null;
+                
+                self.addWarBtnIsDisabled = false;
             }, function (data) {
                 self.errorMsg = data;
+                
+                self.addWarBtnIsDisabled = false;
             });
+        } else {
+            self.addWarBtnIsDisabled = false;
         }
     };
 

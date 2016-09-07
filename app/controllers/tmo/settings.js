@@ -15,7 +15,7 @@ var defUserPicture = '/static/images/tmoolympus/const_elements/tmocomments-defau
 
 var defTmoPic = '/static/images/tmoolympus/const_elements/tmolastwars-tmoclanlogo.png';
 
-var defOpponentPic = '/static/images/tmoolympus/const_elements/tmolastwars-nologo.jpg';
+var defOpponentPic = '/static/images/tmoolympus/const_elements/tmolastwars-nologo_v2.png';
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -415,9 +415,9 @@ module.exports.uploadWar = function (req, res) {
             console.log('error_multer' + err);
             res.send('-1');
         } else {
-            console.log(req.body);
-            console.log('req tmolin: ' + req.body.tmoLineUp);
-            console.log('req opplin: ' + req.body.opponentLineUp);
+            //console.log(req.body);
+            //console.log('req tmolin: ' + req.body.tmoLineUp);
+            //console.log('req opplin: ' + req.body.opponentLineUp);
 
             var warPlayers = [];
             if (Array.isArray(req.body.tmoLineUp)) {
@@ -432,7 +432,7 @@ module.exports.uploadWar = function (req, res) {
             }
 
             warPlayers = arrayUnique(warPlayers);
-            console.log('warplayesr uniq: ' + warPlayers);
+            //console.log('warplayesr uniq: ' + warPlayers);
 
             var newWar = new WarResult;
 
@@ -454,7 +454,7 @@ module.exports.uploadWar = function (req, res) {
                     console.error('upwar usererr: ' + err);
                     res.send('-1');
                 } else {
-                    console.log('users: ' + users);
+                    //console.log('users: ' + users);
                     var tmpArr = [];
                     for (let el of users) {
                         tmpArr.push(el.tag);
@@ -487,8 +487,8 @@ module.exports.uploadWar = function (req, res) {
                         }
                         */
                     }
-                    console.log('tmolineup: ' + newWar.tmoLineUp);
-                    console.log('opponentlineup: ' + newWar.opponentLineUp);
+                    //console.log('tmolineup: ' + newWar.tmoLineUp);
+                    //console.log('opponentlineup: ' + newWar.opponentLineUp);
 
                     if (Array.isArray(req.body.tmoLineUp)) {
                         for (let el2 of req.body.tmoLineUp) {
@@ -525,12 +525,12 @@ module.exports.uploadWar = function (req, res) {
                     }
                     */
 
-                    console.log('tmolineupnotus: ' + newWar.tmoLineUpNotUser);
-                    console.log('opponentlineupnotus: ' + newWar.opponentLineUpNotUser);
+                    //console.log('tmolineupnotus: ' + newWar.tmoLineUpNotUser);
+                    //console.log('opponentlineupnotus: ' + newWar.opponentLineUpNotUser);
                     tmpArr = null;
                     warPlayers = null;
 
-                    console.log('mapsplayed: ' + req.body.mapsPlayed);
+                    //console.log('mapsplayed: ' + req.body.mapsPlayed);
                     if (Array.isArray(req.body.mapsPlayed)) {
                         for (let el4 of req.body.mapsPlayed) {
                             newWar.mapsPlayed.push(el4);
@@ -543,7 +543,7 @@ module.exports.uploadWar = function (req, res) {
                     }*/
                     var overallour = 0;
                     var overalltheir = 0;
-                    console.log('our body: ' + req.body.our[0]);
+                    //console.log('our body: ' + req.body.our[0]);
                     if (Array.isArray(req.body.our)) {
                         for (var i = 0; i < req.body.our.length; i++) {
                             newWar.warResults.push({
@@ -562,7 +562,10 @@ module.exports.uploadWar = function (req, res) {
                         overalltheir = +req.body.their;
                     }
                     for (let el6 of req.files) {
-                        newWar.warImages.push(el6.path.replace('public\\', '\\static\\'));
+                        newWar.warImages.push(path.join('/static/assets/warimg/', el6.filename)); 
+                        //newWar.warImages.push(el6.path.replace('public\\', '\\static\\'));
+                        console.log('______+++++++');
+                        console.log(el6.path.replace('public\\', '\\static\\'));
                     }
                     if (req.body.warMvp) {
                         newWar.warMvp = req.body.warMvp;

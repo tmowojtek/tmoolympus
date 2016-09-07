@@ -3,6 +3,7 @@
 var passport = require('passport');
 var news = require('express').Router();
 var isLoggedIn = require('./helpers/isloggedin');
+var isAuthorized = require('./helpers/isAuthorized');
 var newsController = require('../controllers/tmo/news');
 
 // main news page
@@ -17,6 +18,8 @@ news.post('/news/:newsid([0-9]+)', isLoggedIn, newsController.getNewsById);
 news.get('/news/page/:pageid([0-9]+)', isLoggedIn, newsController.getPage);
 // post comment news
 news.post('/news/:newsid([0-9]+)/addcomment', isLoggedIn, newsController.addComment);
+// delete news by given id
+news.delete('/news/delete/:newsid([0-9]+)', isLoggedIn, isAuthorized.tmoLSA, newsController.deleteNewsById);
 
 /*
 news.get('/', isLoggedIn, function(req, res) {

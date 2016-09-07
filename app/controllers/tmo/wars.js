@@ -25,10 +25,10 @@ module.exports.getWarsList = function (req, res) {
             var lost = 0;
             var draw = 0;
 
-            console.log('countResult: ' + countResult);
-            console.log(countResult);
-            console.log(countResult[0]._id);
-            console.log(countResult[0].count);
+            //console.log('countResult: ' + countResult);
+            //console.log(countResult);
+            //console.log(countResult[0]._id);
+            //console.log(countResult[0].count);
 
             countResult.forEach(function (oneResult) {
                 if (oneResult._id == 'WIN')
@@ -95,10 +95,10 @@ module.exports.getWarById = function (req, res) {
             res.send('User error..');
         }
         console.log(user);
-        var isTmoMemberOrSA = false;
+        var isTmoMLSA = false;
         user._roleid.forEach(function (role) {
-            if ((role.rolename.indexOf('tmo member') != -1) || (role.rolename.indexOf('superadmin') != -1)) {
-                isTmoMemberOrSA = true;
+            if ((role.rolename == 'tmo leadership') || (role.rolename == 'superadmin') || (role.rolename == 'tmo member')) {
+                isTmoMLSA = true;
             }
         });
 
@@ -112,7 +112,7 @@ module.exports.getWarById = function (req, res) {
                     res.send('The war you asked our db about doesn\'t exist or smth. bad has happened to our resources..');
                 } else {
                     res.render('tmo/war-id', {
-                        isTmoMemberOrSA: isTmoMemberOrSA
+                        isTmoMLSA: isTmoMLSA
                         , war: war
                         , loggedUserId: req.user.userid
                     });

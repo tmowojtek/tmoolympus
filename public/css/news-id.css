@@ -328,6 +328,23 @@ body {
     padding-left: 120px;
     padding-right: 120px;
     width: 691px;
+    position: relative;
+}
+
+#delete-news {
+    position: absolute;
+    top: 6px;
+    right: 96px;
+}
+
+#delete-news p {
+    color: darkgrey;
+    font-size: 22px;
+}
+
+#delete-news p:hover {
+    color: firebrick;
+    cursor: pointer;
 }
 
 .background-diagrent-white {
@@ -440,6 +457,8 @@ body {
 
 #main-content #comments .comment .userpic img {
     display: block;
+    width: 48px;
+    max-height: 48px;
 }
 
 #main-content #comments .comment .postcontent {
@@ -517,6 +536,8 @@ input[type='submit'].edit-button {
 
 #main-content #comments .comment-in .userpic img {
     display: block;
+    width: 48px;
+    max-height: 48px;
 }
 
 #main-content #comments .comment-in .postcontent {

@@ -5,10 +5,11 @@ var Counter = mongoose.model('Counter');
 var News = mongoose.model('News');
 var Comment = mongoose.model('Comment');
 var WarResult = mongoose.model('WarResult');
+var User = mongoose.model('User');
 
 module.exports.getLatestNewsAndWars = function (req, res) {
     console.log('[controller] im about to render news page');
-    
+
     console.log('user roles: ' + req.user._roleid);
     News.count({
         _visibility: {
@@ -31,9 +32,9 @@ module.exports.getLatestNewsAndWars = function (req, res) {
                 timestamp: 'desc'
             }).select('-_id warid opponentName opponentTeamPic tmoTeamPic overallScore').limit(3).exec(function (err3, warresult) {
                 if (err3) throw err3;
-                
-                console.log('last wars: ' + warresult);
-                console.log('test: ' + warresult[0].overallScore.our);
+
+                //console.log('last wars: ' + warresult);
+                //console.log('test: ' + warresult[0].overallScore.our);
 
                 res.render('tmo/index.ejs', {
                     lastWars: warresult
@@ -109,7 +110,7 @@ module.exports.getAllNews = function (req, res) {
     }).select('newsid title commentscount date _authorid _categoryid -_id').exec(function (err, news) {
         if (err)
             throw err;
-        console.log(news);
+        //console.log(news);
         res.render('tmo/news-list.ejs', {
             news: news
         });
@@ -117,27 +118,43 @@ module.exports.getAllNews = function (req, res) {
 };
 
 module.exports.getNewsById = function (req, res) {
-    News.findOne({
-        $and: [{
-            newsid: req.params.newsid
-            }, {
-            _visibility: {
-                $in: req.user._roleid
+    User.findOne({
+        _id: req.user._id
+    }).populate('_roleid', '-_id rolename').select('-_id _roleid').exec(function (err1, user) {
+        if (err1) {
+            res.send('User error..');
+        }
+        //console.log(user);
+        var isTmoLSA = false;
+        user._roleid.forEach(function (role) {
+            if ((role.rolename == 'tmo leadership') || (role.rolename == 'superadmin')) {
+                isTmoLSA = true;
             }
+        });
+        
+        News.findOne({
+            $and: [{
+                newsid: req.params.newsid
+            }, {
+                _visibility: {
+                    $in: req.user._roleid
+                }
         }]
-    }).populate('_authorid', 'userid tag -_id').populate('_categoryid', 'categoryname picturesrc -_id') /*.populate('comments', '-_id')*/ .sort({
-        date: 'desc'
-    }).select('newsid picturesrc title body commentscount date _authorid _categoryid comments').exec(function (err, news) {
-        //console.log(news);
-        if (err)
-            throw err;
-        if (!news)
-            res.send('no news with such id :[');
-        else
-            res.render('tmo/news-id.ejs', {
-                news: news
-                , loggedUserId: req.user.userid
-            });
+        }).populate('_authorid', 'userid tag -_id').populate('_categoryid', 'categoryname picturesrc -_id') /*.populate('comments', '-_id')*/ .sort({
+            date: 'desc'
+        }).select('newsid picturesrc title body commentscount date _authorid _categoryid comments').exec(function (err, news) {
+            //console.log(news);
+            if (err)
+                throw err;
+            if (!news)
+                res.send('no news with such id :[');
+            else
+                res.render('tmo/news-id.ejs', {
+                    isTmoLSA: isTmoLSA
+                    , news: news
+                    , loggedUserId: req.user.userid
+                });
+        });
     });
 };
 
@@ -161,7 +178,7 @@ module.exports.getPage = function (req, res) {
         }).skip(3 * page).select('newsid title body picturesrc commentscount date _authorid -_id').exec(function (err2, result) {
             if (err2) throw err2;
 
-            console.log('result /news/page: ' + result);
+            //console.log('result /news/page: ' + result);
 
             WarResult.find({}).sort({
                 timestamp: 'desc'
@@ -227,7 +244,7 @@ module.exports.addComment = function (req, res) {
         , _newsid: req.body._news_id
         , body: req.body._body
     });
-    console.log('parentCommentId ' + req.body.parentCommentId);
+    //console.log('parentCommentId ' + req.body.parentCommentId);
     if (req.body.parentCommentId == 0) {
         News.findOneAndUpdate({
             _id: req.body._news_id
@@ -286,4 +303,22 @@ module.exports.addComment = function (req, res) {
             msg: 'Ups.. something went wrong mehhhhhhhh...'
         });
     }
+};
+
+module.exports.deleteNewsById = function (req, res) {
+    News.findOneAndRemove({
+        newsid: req.params.newsid
+    }, function (err, deletedNews) {
+        if (err) {
+            console.log(err);
+            res.send({
+                msg: '-1'
+                , msgDetail: 'Server-sided error happened while deleting this war.'
+            });
+        } else {
+            res.send({
+                msg: 'News was deleted successfuly!'
+            });
+        }
+    });
 };

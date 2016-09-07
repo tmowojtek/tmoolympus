@@ -5,6 +5,8 @@ angular.module('settingsApp').controller('NewsController', ['$scope', 'fileReade
     self.errorMsg = null;
     self.selectedPic = null;
     self.selectedPicSrc = null;
+    
+    self.addNewsBtnIsDisabled = false;
 
     self.newsCategories = getNewsCategories;
     self.newsRoles = getRoles;
@@ -16,10 +18,14 @@ angular.module('settingsApp').controller('NewsController', ['$scope', 'fileReade
     };
 
     self.addNews = function (news) {
+        self.addNewsBtnIsDisabled = true;
+        
         self.successMsg = null;
         self.errorMsg = null;
         if (!news) {
             self.errorMsg = ' Fill in every field.';
+            
+            self.addNewsBtnIsDisabled = false;
         } else {
             if (!news.title) {
                 self.errorMsg += ' fill in title 4+chars ';
@@ -44,9 +50,15 @@ angular.module('settingsApp').controller('NewsController', ['$scope', 'fileReade
                 newsService.uploadNews(news).then(function (data) {
                     self.successMsg = data;
                     $scope.news = null;
+                    
+                    self.addNewsBtnIsDisabled = false;
                 }, function (data) {
                     self.errorMsg = data;
+                    
+                    self.addNewsBtnIsDisabled = false;
                 });
+            } else {
+                self.addNewsBtnIsDisabled = false;
             }
         }
     };

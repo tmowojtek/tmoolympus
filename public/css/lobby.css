@@ -686,7 +686,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b2b30', end
 
 .simple-news-content .news-text p {
     font-size: 15px;
-    padding: 20px;
+    padding: 20px 30px 20px 30px;
     text-align: justify;
     text-indent: 26px;
 }

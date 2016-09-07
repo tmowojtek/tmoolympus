@@ -42,6 +42,12 @@
     -->
     
     <div id="main-content" class="background-diagrent-white">
+        <% if (isTmoLSA) {%>
+            <div id="delete-news">
+                <p>X</p>
+                <input type="hidden" name="newsid" value="<%= news.newsid %>">
+            </div>
+        <% }%>
         <!--<img id="news-img" src="/static/_old/images/prototypes_v3/news-logo/12980449_1153989034612320_1395700151_n.png" alt="news-img" />-->
         <img id="news-img" src="<%= news.picturesrc %>" alt="news-img" align="middle"/>
         <div id="news-title">
@@ -70,7 +76,7 @@
             </div>
         </div>
         <div id="news-body">
-            <%- news.body %>
+            <p><%- news.body %></p>
         </div>
 
         <div id="comments">
