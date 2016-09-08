@@ -25,6 +25,8 @@ var storage = multer.diskStorage({
             cb(null, './public/assets/avatars/')
         } else if (req.path == '/war/uploadwar') {
             cb(null, './public/assets/warimg/')
+        } else if (req.path == '/admin/uploadteam') {
+            cb(null, './public/assets/teamimg/')
         } else {
             cb(null, './public/assets/tmp/')
         }
@@ -54,15 +56,17 @@ module.exports.getSettings = function (req, res) {
 };
 */
 
-module.exports.getSettings = function(req, res) {
-    User.findOne({_id: req.user._id}).populate('_roleid', '-_id rolename').select('-_id _roleid').exec(function(err, user) {
-        if(err) {
+module.exports.getSettings = function (req, res) {
+    User.findOne({
+        _id: req.user._id
+    }).populate('_roleid', '-_id rolename').select('-_id _roleid').exec(function (err, user) {
+        if (err) {
             res.send('Settings page cannot be loaded.');
         } else {
             var roles = [];
             //console.log(user);
-            if(user._roleid) {
-                user._roleid.forEach(function(role) {
+            if (user._roleid) {
+                user._roleid.forEach(function (role) {
                     roles.push(role.rolename);
                 });
             }
@@ -562,7 +566,7 @@ module.exports.uploadWar = function (req, res) {
                         overalltheir = +req.body.their;
                     }
                     for (let el6 of req.files) {
-                        newWar.warImages.push(path.join('/static/assets/warimg/', el6.filename)); 
+                        newWar.warImages.push(path.join('/static/assets/warimg/', el6.filename));
                         //newWar.warImages.push(el6.path.replace('public\\', '\\static\\'));
                         console.log('______+++++++');
                         console.log(el6.path.replace('public\\', '\\static\\'));
@@ -635,6 +639,86 @@ module.exports.uploadWar = function (req, res) {
         }
     });
 };
+
+module.exports.getTeamNames = function (req, res) {
+    Team.find({
+        teamname: {
+            $ne: 'The Myth of'
+        }
+    }).select('teamname -_id').exec(function (err, teamList) {
+        if (err) {
+            console.log('Err getclanslist: ' + err);
+            res.send('-1');
+        } else {
+            console.log('Eheheh: ' + teamList);
+            res.json(teamList);
+        }
+    });
+};
+
+module.exports.uploadTeam = function (req, res) {
+    upload(req, res, function (err) {
+        console.log(req.user._id);
+        if (err) {
+            console.log(err);
+            fs.unlink(req.file.path, function (err) {
+                if (err) {
+                    console.error(err);
+                } else {
+                    console.log('tudum file deleted rofl');
+                }
+            });
+            console.log('error_multer' + err);
+            res.send('-1');
+        } else {
+            var picPath = path.join('/static/assets/teamimg/', req.file.filename);
+
+            var newTeam = new Team;
+
+            newTeam.teamname = req.body.teamname;
+            newTeam.teamnameshort = req.body.teamnameshort;
+            newTeam.logosrc = picPath;
+            newTeam.createdby = req.user._id;
+
+            newTeam.save(function (err2, savedTeam) {
+                if (err2) {
+                    fs.unlink(req.file.path, function (err3) {
+                        if (err3) {
+                            console.error(err3);
+                        } else {
+                            console.log('tudum file teamimg deleted rofl');
+                        }
+                    });
+                    console.log('error_multer' + err);
+                    res.send('-1');
+                } else {
+                    console.log(savedTeam);
+                    res.send('Team added to db.');
+                }
+            });
+        }
+    });
+}
+
+module.exports.removeTeam = function (req, res) {
+    console.log(req.params.teamname);
+    Team.findOneAndRemove({
+        teamname: req.params.teamname
+    }, function (err, removedTeam) {
+        if (err) {
+            console.log(err);
+            res.send('-1');
+        } else {
+            if (!removedTeam) {
+                console.log(removedTeam);
+                console.log('couldnt find such team');
+                res.send('-1');
+            } else {
+                res.send('Team deleted successfuly!');
+            }
+        }
+    });
+}
 
 /* ----------------------------------------------------
                 UTIL

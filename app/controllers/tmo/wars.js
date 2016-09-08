@@ -41,7 +41,7 @@ module.exports.getWarsList = function (req, res) {
 
             WarResult.find({}).sort({
                 timestamp: 'desc'
-            }).select('-_id warid opponentName opponentTeamPic tmoTeamPic overallScore timestamp').limit(defNumOfWarsInList).exec(function (err2, wars) {
+            }).select('-_id warid opponentName opponentTeamPic tmoTeamPic overallScore timestamp commentscount').limit(defNumOfWarsInList).exec(function (err2, wars) {
                 if (err2) {
                     res.render('tmo/war-list', {
                         stats: null

@@ -73,7 +73,19 @@ angular.module('settingsApp').config(['$stateProvider', '$urlRouterProvider', fu
         , templateUrl: '/static/app/war/addwar.html'
         , controller: 'WarController as warCtrl'
     }).state('adminpanel', {
-        url: '/adminpanel'
+        resolve: {
+            getTeamNames: function (adminService) {
+                return adminService.getTeamNames().then(function (data) {
+                    console.log('get teamnames');
+                    return data;
+                }, function (data) {
+                    console.log('error getteamnames');
+                    return null;
+                });
+            }
+        }
+        , url: '/adminpanel'
         , templateUrl: '/static/app/adminpanel/adminpanel.html'
+        , controller: 'AdminController as adminCtrl'
     })
 }]);

@@ -1,1 +1,33 @@
-<p>adminpanel</p>
+<div id="apanel">
+    <div class="add-team">
+        <div class="add-clan-title">Add team to db with logo image</div>
+        <form>
+            <p class="success-add-team" ng-show="adminCtrl.successAddTeamMsg">{{ adminCtrl.successAddTeamMsg }}</p>
+            <p class="error-add-team" ng-show="adminCtrl.errorAddTeamMsg">{{ adminCtrl.errorAddTeamMsg }}</p>
+            <p class="fieldError">{{ adminCtrl.addTeamError }}</p>
+            <label>Team name:</label>
+            <input class="teamname" type="text" ng-model="adminCtrl.teamName" ng-minlength="1" ng-maxlength="30" />
+            <label>Short team name:</label>
+            <input class="teamnameshort" type="text" ng-model="adminCtrl.teamNameShort" ng-minlength="1" ng-maxlength="6" />
+            <label>Logo:</label>
+            <input type="file" accept="image/*" ng-model="adminCtrl.selectedTeamPic" custom-on-change="adminCtrl.loadPreviewPictureOnChange()" />
+            <div class="add-team-btn">
+                <img ng-show="adminCtrl.selectedTeamPic" ng-src="{{adminCtrl.selectedTeamPicSrc}}" />
+                <button ng-disabled="adminCtrl.addTeamBtnIsDisabled" ng-click="adminCtrl.addTeam()" type="button">Create team</button>
+            </div>
+        </form>
+    </div>
+    <div class="remove-team">
+        <div class="remove-clan-title">
+            Remove team from db
+        </div>
+        <form>
+            <p class="success-remove-team" ng-show="adminCtrl.successRemoveTeamMsg">{{ adminCtrl.successRemoveTeamMsg }}</p>
+            <p class="error-remove-team" ng-show="adminCtrl.errorRemoveTeamMsg">{{ adminCtrl.errorRemoveTeamMsg }}</p>
+            <p class="fieldError">{{ adminCtrl.removeTeamError }}</p>
+            <label>Select team:</label>
+            <select class="remove-teamname" ng-options="team as team.teamname for team in adminCtrl.teamNamesArr" ng-model="selectedRemoveTeamName"></select>
+            <button ng-disabled="adminCtrl.removeTeamBtnIsDisabled" ng-click="adminCtrl.removeTeam()">Delete team</button>
+        </form>
+    </div>
+</div>

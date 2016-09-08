@@ -702,7 +702,91 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b2b30', end
     margin: 0px auto;
 }
 
+
 /* ADD WAR SETTINGS END */
+
+
+/* ADMIN PANEL SETTINGS */
+
+#apanel {
+    padding: 20px;
+}
+
+#apanel .add-team {
+    margin-bottom: 30px;
+}
+
+#apanel .add-team .add-clan-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#apanel .add-team form {
+    text-align: center;
+}
+
+#apanel .add-team .teamname {
+    margin-right: 10px;
+}
+
+#apanel .add-team .teamnameshort {
+    margin-right: 10px;
+    width: 55px;
+}
+
+#apanel .add-team .add-team-btn {
+    margin-top: 15px;
+}
+
+#apanel .add-team .add-team-btn img {
+    width: 45px;
+    max-height: 60px;
+    vertical-align: middle;
+}
+
+#apanel .remove-team {
+    text-align: center;
+}
+
+#apanel .remove-team .remove-clan-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#apanel .remove-team .remove-teamname {
+    margin-right: 10px;
+}
+
+
+/* ADMIN pANEL SETTINGS END */
+
+
+/* ERROR FIELDS STYLING */
+
+#apanel .add-team form .success-add-team,
+#apanel .remove-team form .success-remove-team {
+    background-color: darkturquoise;
+    color: white;
+    padding: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#apanel .add-team form .error-add-team,
+#apanel .remove-team form .error-remove-team {
+    background-color: deeppink;
+    color: whitesmoke;
+    padding: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.fieldError {
+    color: crimson;
+    margin-bottom: 5px;
+}
 
 
 /* MAIN CONTENT END | FOOTER START */

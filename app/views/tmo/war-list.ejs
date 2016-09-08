@@ -42,10 +42,12 @@
                     <div class="match-date">
                         <%= ('0' + war.timestamp.getDate()).slice(-2) + '.' + ('0' + (war.timestamp.getMonth()+1)).slice(-2) + '.' + war.timestamp.getFullYear(); %>
                     </div>
-                    <div class="home-team">The Myth of <img class="clan-img-home" src="<%= war.tmoTeamPic %>" alt="home-logo" /> <span class="score-left color-<%= setColor(war.overallScore) %>"><%= war.overallScore.our %></span></div>
-                    <div class="separator"><span class="color-<%= setColor(war.overallScore) %>">-</span></div>
-                    <div class="away-team"><span class="score-right color-<%= setColor(war.overallScore) %>"><%= war.overallScore.their %></span> <img class="clan-img-away" src="<%= war.opponentTeamPic %>" alt="away-team" /> <%= war.opponentName %></div>
-                    <div class="details-link"><a class="ahref-match-details" href="/war/<%= war.warid %>">details</a></div>
+                    <div class="small-wrap">
+                        <div class="home-team">The Myth of <img class="clan-img-home" src="<%= war.tmoTeamPic %>" alt="home-logo" /> <span class="score-left color-<%= setColor(war.overallScore) %>"><%= war.overallScore.our %></span></div>
+                        <div class="separator"><span class="color-<%= setColor(war.overallScore) %>">-</span></div>
+                        <div class="away-team"><span class="score-right color-<%= setColor(war.overallScore) %>"><%= war.overallScore.their %></span> <img class="clan-img-away" src="<%= war.opponentTeamPic %>" alt="away-team" /> <%= war.opponentName %></div>
+                    </div>
+                    <div class="details-link"><a class="ahref-match-details" href="/war/<%= war.warid %>">details <span class="comments-count">(<%= war.commentscount %>)</span></a></div>
                 </div>
             <% }); %>
             </div>

@@ -16,5 +16,8 @@ settings.get('/war/gettmoclans', isloggedin, isAuthorized.tmoMLSA, settingsContr
 settings.get('/war/gettmomembers', isloggedin, isAuthorized.tmoMLSA, settingsController.getTmoMembers);
 settings.get('/war/getuserslist', isloggedin, isAuthorized.tmoMLSA, settingsController.getUsersList);
 settings.post('/war/uploadwar', isloggedin, isAuthorized.tmoMLSA, settingsController.uploadWar);
+settings.get('/admin/getteamnames', isloggedin, isAuthorized.tmoLSA, settingsController.getTeamNames);
+settings.post('/admin/uploadteam', isloggedin, isAuthorized.tmoLSA, settingsController.uploadTeam);
+settings.delete('/admin/removeteam/:teamname', isloggedin, isAuthorized.tmoLSA, settingsController.removeTeam);
 
 module.exports = settings;
