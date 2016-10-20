@@ -18,10 +18,10 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
     self.partialScoresError = null;
     self.anyScreensError = null;
     self.matchReportError = null;
-    
+
     self.addWarBtnIsDisabled = false;
 
-    self.mapList = ['carentan', 'dawnville', 'brecourt', 'tigertown', 'neuville', 'depot', 'chateau', 'hurtgen', 'railyard', 'rocket', 'ship', 'harbor', 'bocage', 'stalingrad', 'german_town', 'powcamp'];
+    self.mapList = ['carentan', 'dawnville', 'brecourt', 'tigertown', 'neuville', 'depot', 'chateau', 'hurtgen', 'railyard', 'rocket', 'ship', 'harbor', 'bocage', 'stalingrad', 'german_town', 'powcamp', 'pavlov'];
     self.possibleMvp = [];
 
     // post war details parameters
@@ -33,20 +33,20 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
     self.warImages = [];
     self.selectedMvp = null;
     self.warReport = null;
-    
-    self.updateSelectedOpponentClan = function() {
-        if($scope.selectedClan) {
+
+    self.updateSelectedOpponentClan = function () {
+        if ($scope.selectedClan) {
             $scope.typedClan = null;
             self.opponentClanName = $scope.selectedClan.teamname;
         } else {
             self.opponentClanName = null;
         }
     };
-    
-    self.updateTypedOpponentClan = function() {
-        if($scope.typedClan != null) {
-            if($scope.typedClan.trim().length > 0) {
-                $scope.selectedClan= null;
+
+    self.updateTypedOpponentClan = function () {
+        if ($scope.typedClan != null) {
+            if ($scope.typedClan.trim().length > 0) {
+                $scope.selectedClan = null;
                 self.opponentClanName = $scope.typedClan;
             } else {
                 self.opponentClanName = null;
@@ -112,7 +112,7 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
     };
 
     self.addPartialScore = function (our, their) {
-        if ((our >= 0 && their >= 0) && (our && their)) {
+        if (our >= 0 && their >= 0) {
             self.warResults.push({
                 our: our
                 , their: their
@@ -173,7 +173,7 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
 
     self.postWar = function () {
         self.addWarBtnIsDisabled = true;
-        
+
         self.errorMsg = null;
         self.successMsg = null;
         self.opponentError = null;
@@ -243,11 +243,11 @@ angular.module('settingsApp').controller('WarController', ['$scope', 'fileReader
                 self.selectedMvp = null;
                 self.possibleMvp = [];
                 self.warReport = null;
-                
+
                 self.addWarBtnIsDisabled = false;
             }, function (data) {
                 self.errorMsg = data;
-                
+
                 self.addWarBtnIsDisabled = false;
             });
         } else {
