@@ -60,6 +60,7 @@ body {
 }
 
 #tmo-header {
+    position: relative;
     /*border: 1px solid red;*/
     display: block;
     height: 83px;
@@ -99,6 +100,12 @@ body {
     /* -28px ? */
     position: relative;
     width: 428px;
+}
+
+#tmo-10th-link {
+    position: absolute;
+    right: -24px;
+    top: 0px;
 }
 
 #tmo-img {

@@ -1,9 +1,10 @@
 'use strict'
 
+var path = require('path');
 var passport = require('passport');
 var apply = require('express').Router();
-var isLoggedIn = require('./helpers/isloggedin');
-var applyController = require('../controllers/tmo/apply');
+var isLoggedIn = require(path.join(__dirname, 'helpers/isloggedin'));
+var applyController = require(path.join(__dirname, '../controllers/tmo/apply'));
 
 // renders apply.ejs
 apply.get('/', isLoggedIn, applyController.getApply);

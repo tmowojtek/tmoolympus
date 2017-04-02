@@ -7,8 +7,8 @@ var autoPopulate = require('mongoose-autopopulate');
 module.exports.init = function (app) {
     var config = app.get('config');
 
-    mongoose.connect(config.mongodb.uri);
-    //mongoose.connect(config.mongodb.uri, config.mongodb.options);
+    mongoose.connect(config.mongodb.uri); // local
+    //mongoose.connect(config.mongodb.uri, config.mongodb.options); // not used?
     //openshift srv
     //mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + config.mongodb.options.dbname);
 

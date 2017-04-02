@@ -1,10 +1,11 @@
 'use strict'
 
+var path = require('path');
 var passport = require('passport');
 var news = require('express').Router();
-var isLoggedIn = require('./helpers/isloggedin');
-var isAuthorized = require('./helpers/isAuthorized');
-var newsController = require('../controllers/tmo/news');
+var isLoggedIn = require(path.join(__dirname, 'helpers/isloggedin'));
+var isAuthorized = require(path.join(__dirname, 'helpers/isAuthorized'));
+var newsController = require(path.join(__dirname, '../controllers/tmo/news'));
 
 // main news page
 news.get('/', isLoggedIn, newsController.getLatestNewsAndWars);

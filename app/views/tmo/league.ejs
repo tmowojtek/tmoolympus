@@ -1,0 +1,132 @@
+<!doctype html>
+<html ng-app="league">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>TMO League</title>
+
+    <!-- Bootstrap -->
+    <link href="/static/test_bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/static/test_bootstrap/index.css">
+
+</head>
+
+<body ng-controller="LeagueController">
+    <div class="container">
+        <header data-toggle="collapse" data-target="#collapseWell" aria-expanded="false" aria-controls="collapseWell">
+            <div class="page-header">
+                <div class="row my-col-equal">
+                    <div class="col-xs-10 col-md-10 vcenter">
+                        <h1>TMO League <small>first season underway!</small></h1>
+                    </div><!--
+                       --><div class="col-xs-2 col-md-2 text-right vcenter">
+                        <img src="/static/test_bootstrap/images/15644395_1362731687071386_1162232921_n.png" class="header-img-margin">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="collapseWell" class="collapse">
+            <div class="well">
+                <a class="btn btn-info" role="button" href="/league/schedule">Schedule</a>
+            </div>
+        </div>
+        <article>
+            <section class="section-line-separator table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Clan name</th>
+                            <th class="text-center">MP</th>
+                            <th class="text-center">W</th>
+                            <th class="text-center">D</th>
+                            <th class="text-center">L</th>
+                            <th class="text-center">WR</th>
+                            <th class="text-center">LR</th>
+                            <th class="text-center">+/-</th>
+                            <th class="text-center">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in table" ng-class="{'first': $first, 'last': $last, 'second': $index==1, 'middle': ($index>1)&&($index<table.length-2), 'beforelast': $index==table.length-2}">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2 text-center"><img ng-src="{{row.picture}}"></div>
+                                    <div class="col-xs-8 col-md-10">{{row.name}}</div>
+                                </div>
+                            </td>
+                            <td class="text-center">{{row.matches_played}}</td>
+                            <td class="text-center">{{row.win}}</td>
+                            <td class="text-center">{{row.draw}}</td>
+                            <td class="text-center">{{row.lose}}</td>
+                            <td class="text-center">{{row.win_rounds}}</td>
+                            <td class="text-center">{{row.lost_rounds}}</td>
+                            <td class="text-center">{{row.rounds_difference}}</td>
+                            <td class="text-center">{{row.points}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+    </div>
+
+    <article>
+        <section>
+            <!-- current week matches -->
+            <div class="container schedule-container text-center">
+                <h3>Match week #{{matchWeek}}</h3>
+                <h4>{{matchWeekDateFrom}} - {{matchWeekDateTo}}</h4>
+                <br>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 table-responsive">
+                        <table id="current-match-week" class="table table-sm table-hover">
+                            <tbody>
+                                <tr ng-repeat="match in thisWeekMatches">
+                                    <td ng-class="{'col-xs-2 col-sm-1 col-md-1': $first}"><img ng-src="{{match.picture_a}}"></td>
+                                    <td ng-class="{'col-xs-3 col-sm-4 col-md-4': $first}">{{match.name_a}}</td>
+                                    <td ng-class="{'col-xs-2 col-sm-2 col-md-2': $first}">{{match.score_a}} - {{match.score_b}}</td>
+                                    <td ng-class="{'col-xs-3 col-sm-4 col-md-4': $first}">{{match.name_b}}</td>
+                                    <td ng-class="{'col-xs-2 col-sm-1 col-md-1': $first}"><img ng-src="{{match.picture_b}}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <!-- all fixtures together -->
+        </section>
+    </article>
+
+    <footer class="container text-center">
+        <p>The Myth of clan &copy; 2017</p>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/test_bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/restangular/1.5.1/restangular.min.js"></script>
+    
+    <script type="text/javascript" src="/static/test_bootstrap/app/app.js"></script>
+</body>
+
+</html>

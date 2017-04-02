@@ -1,9 +1,10 @@
 'use strict'
 
-var isloggedin = require('./helpers/isloggedin');
-var isAuthorized = require('./helpers/isAuthorized');
+var path = require('path');
 var settings = require('express').Router();
-var settingsController = require('../controllers/tmo/settings');
+var isloggedin = require(path.join(__dirname, 'helpers/isloggedin'));
+var isAuthorized = require(path.join(__dirname, 'helpers/isAuthorized'));
+var settingsController = require(path.join(__dirname, '../controllers/tmo/settings'));
 
 settings.get('/', isloggedin, isAuthorized.tmoSiteUser, settingsController.getSettings);
 settings.get('/user/activepic', isloggedin, isAuthorized.tmoSiteUser, settingsController.getUserActivePic);

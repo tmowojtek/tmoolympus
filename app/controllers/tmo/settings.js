@@ -1,4 +1,4 @@
-'use strict'
+//'use strict'
 
 var fs = require('fs');
 var mongoose = require('mongoose');
@@ -20,15 +20,15 @@ var defOpponentPic = '/static/images/tmoolympus/const_elements/tmolastwars-nolog
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         if (req.path == '/news/uploadnews') {
-            cb(null, './public/assets/newsimg/')
+            cb(null, '/public/assets/newsimg/')
         } else if (req.path == '/user/updatepic') {
-            cb(null, './public/assets/avatars/')
+            cb(null, '/public/assets/avatars/')
         } else if (req.path == '/war/uploadwar') {
-            cb(null, './public/assets/warimg/')
+            cb(null, '/public/assets/warimg/')
         } else if (req.path == '/admin/uploadteam') {
-            cb(null, './public/assets/teamimg/')
+            cb(null, '/public/assets/teamimg/')
         } else {
-            cb(null, './public/assets/tmp/')
+            cb(null, '/public/assets/tmp/')
         }
     }
     , filename: function (req, file, cb) {
@@ -55,6 +55,7 @@ module.exports.getSettings = function (req, res) {
     res.sendFile(path.join(__dirname, '../../../public/settings.html'));
 };
 */
+
 
 module.exports.getSettings = function (req, res) {
     User.findOne({
@@ -132,7 +133,7 @@ module.exports.userUpdatePic = function (req, res) {
                                     src: picPath
                                 });
                             } else {
-                                oldPicSrc = oldPicSrc.replace('\\static\\', '..\\..\\..\\public\\');
+                                oldPicSrc = oldPicSrc.replace('\\static\\', '../../../public/');
                                 oldPicSrc = path.join(__dirname, oldPicSrc);
                                 console.log('oldpicsrc replace to delete: ' + oldPicSrc);
                                 fs.unlink(oldPicSrc, function (err) {
@@ -159,22 +160,6 @@ module.exports.userUpdatePic = function (req, res) {
                     });
                 }
             });
-
-            /*
-            User.update({
-                _id: req.user._id
-            }, {
-                userPictureSrc: picPath
-            }, function (err, raw) {
-                if (err) res.json({
-                    src: '-1'
-                });
-
-                res.json({
-                    src: picPath
-                });
-            });
-            */
         }
     });
 };
@@ -221,7 +206,7 @@ module.exports.resetUserPic = function (req, res) {
                             message: 'Your user picture is now set default.'
                         });
                     } else {
-                        oldPicSrc = oldPicSrc.replace('\\static\\', '..\\..\\..\\public\\');
+                        oldPicSrc = oldPicSrc.replace('\\static\\', '../../../public/');
                         oldPicSrc = path.join(__dirname, oldPicSrc);
                         fs.unlink(oldPicSrc, function (err) {
                             if (err) {
@@ -241,22 +226,6 @@ module.exports.resetUserPic = function (req, res) {
             });
         }
     });
-
-    /*
-    User.update({
-        _id: req.user._id
-    }, {
-        userPictureSrc: defUserPicture
-    }, function (err, raw) {
-        if (err) res.json({
-            message: '-1'
-        });
-
-        res.json({
-            message: 'Your user picture is now set default.'
-        });
-    });
-    */
 };
 
 module.exports.getNewsCategories = function (req, res) {
@@ -405,7 +374,7 @@ module.exports.getUsersList = function (req, res) {
 };
 
 module.exports.uploadWar = function (req, res) {
-    upload_multi(req, res, function (err) {
+	upload_multi(req, res, function (err) {
         if (err) {
             req.files.forEach(function (el) {
                 fs.unlink(el.path, function (err) {
@@ -460,7 +429,8 @@ module.exports.uploadWar = function (req, res) {
                 } else {
                     //console.log('users: ' + users);
                     var tmpArr = [];
-                    for (let el of users) {
+					
+                    for (var el in users) {
                         tmpArr.push(el.tag);
                         if (Array.isArray(req.body.tmoLineUp)) {
                             if (req.body.tmoLineUp.indexOf(el.tag) != -1) {
@@ -482,20 +452,20 @@ module.exports.uploadWar = function (req, res) {
                                 //break;
                             }
                         }
-                        /*
-                        if (req.body.tmoLineUp.indexOf(el.tag) != -1) {
-                            newWar.tmoLineUp.push(el._id);
-                        }
-                        if (req.body.opponentLineUp.indexOf(el.tag) != -1) {
-                            newWar.opponentLineUp.push(el._id);
-                        }
-                        */
+                        
+                        //if (req.body.tmoLineUp.indexOf(el.tag) != -1) {
+                          //  newWar.tmoLineUp.push(el._id);
+                        //}
+                        //if (req.body.opponentLineUp.indexOf(el.tag) != -1) {
+                          //  newWar.opponentLineUp.push(el._id);
+                        //}
                     }
+
                     //console.log('tmolineup: ' + newWar.tmoLineUp);
                     //console.log('opponentlineup: ' + newWar.opponentLineUp);
 
                     if (Array.isArray(req.body.tmoLineUp)) {
-                        for (let el2 of req.body.tmoLineUp) {
+                        for (var el2 in req.body.tmoLineUp) {
                             if (tmpArr.indexOf(el2) == -1) {
                                 newWar.tmoLineUpNotUser.push(el2);
                             }
@@ -506,7 +476,7 @@ module.exports.uploadWar = function (req, res) {
                         }
                     }
                     if (Array.isArray(req.body.opponentLineUp)) {
-                        for (let el3 of req.body.opponentLineUp) {
+                        for (var el3 in req.body.opponentLineUp) {
                             if (tmpArr.indexOf(el3) == -1) {
                                 newWar.opponentLineUpNotUser.push(el3);
                             }
@@ -516,18 +486,6 @@ module.exports.uploadWar = function (req, res) {
                             newWar.opponentLineUpNotUser.push(req.body.opponentLineUp);
                         }
                     }
-                    /*
-                    for (let el2 of req.body.tmoLineUp) {
-                        if (tmpArr.indexOf(el2) == -1) {
-                            newWar.tmoLineUpNotUser.push(el2);
-                        }
-                    }
-                    for (let el3 of req.body.opponentLineUp) {
-                        if (tmpArr.indexOf(el3) == -1) {
-                            newWar.opponentLineUpNotUser.push(el3);
-                        }
-                    }
-                    */
 
                     //console.log('tmolineupnotus: ' + newWar.tmoLineUpNotUser);
                     //console.log('opponentlineupnotus: ' + newWar.opponentLineUpNotUser);
@@ -536,15 +494,15 @@ module.exports.uploadWar = function (req, res) {
 
                     //console.log('mapsplayed: ' + req.body.mapsPlayed);
                     if (Array.isArray(req.body.mapsPlayed)) {
-                        for (let el4 of req.body.mapsPlayed) {
+                        for (var el4 in req.body.mapsPlayed) {
                             newWar.mapsPlayed.push(el4);
                         }
                     } else {
                         newWar.mapsPlayed.push(req.body.mapsPlayed);
                     }
-                    /*for (let el5 of req.body.warResults) {
-                        newWar.warResults.push(el5);
-                    }*/
+                    //for (let el5 of req.body.warResults) {
+                        //newWar.warResults.push(el5);
+                    //}
                     var overallour = 0;
                     var overalltheir = 0;
                     //console.log('our body: ' + req.body.our[0]);
@@ -565,12 +523,16 @@ module.exports.uploadWar = function (req, res) {
                         overallour = +req.body.our;
                         overalltheir = +req.body.their;
                     }
-                    for (let el6 of req.files) {
-                        newWar.warImages.push(path.join('/static/assets/warimg/', el6.filename));
+					
+					
+                    for (var el6 in req.files) {
+                        newWar.warImages.push(path.join('/static/assets/warimg', el6.filename));
                         //newWar.warImages.push(el6.path.replace('public\\', '\\static\\'));
-                        console.log('______+++++++');
-                        console.log(el6.path.replace('public\\', '\\static\\'));
+                        //console.log('______+++++++');
+                        //console.log(el6.path.replace('public\\', '\\static\\'));
                     }
+					
+					
                     if (req.body.warMvp) {
                         newWar.warMvp = req.body.warMvp;
                     }
@@ -588,7 +550,8 @@ module.exports.uploadWar = function (req, res) {
                     } else {
                         newWar.warStatus = 'DRAW';
                     }
-
+					
+					
                     Team.findOne({
                         teamname: req.body.opponentName
                     }).select('logosrc _id').exec(function (err, team) {
@@ -624,7 +587,7 @@ module.exports.uploadWar = function (req, res) {
                                                 console.log('tudum file deleted rofl');
                                             }
                                         });
-                                    })
+                                    });
                                     console.error('upwar teamerr: ' + err);
                                     res.send('-1');
                                 } else {
@@ -633,12 +596,14 @@ module.exports.uploadWar = function (req, res) {
                                 }
                             });
                         }
-                    })
+                    });
+					
                 }
             });
         }
     });
 };
+
 
 module.exports.getTeamNames = function (req, res) {
     Team.find({

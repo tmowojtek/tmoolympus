@@ -1,9 +1,11 @@
 'use strict'
 
+var path = require('path');
 var passport = require('passport');
 var User = require('mongoose').model('User');
 
 module.exports.init = function(app) {
+	
 	passport.serializeUser(function(user, done)  {
 		done(null, user.id);
 	});
@@ -13,6 +15,6 @@ module.exports.init = function(app) {
 	});
 	
 	// load strategies
-	require('./strategies/local-signup')();
-	require('./strategies/local-signin')();
+	require(path.join(__dirname, 'strategies/local-signup'))();
+	require(path.join(__dirname, 'strategies/local-signin'))();
 };

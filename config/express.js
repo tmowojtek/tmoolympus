@@ -1,4 +1,3 @@
-'use strict'
 
 var path = require('path');
 var compression = require('compression');
@@ -9,7 +8,7 @@ var serveStatic = require('serve-static');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 var passport = require('passport');
-var MongoStore = require('connect-mongo')(session);
+var MongoStore = require('connect-mongo/es5')(session); // session
 var flash = require('connect-flash');
 var ejs = require('ejs');
 //var versionator = require('versionator');
@@ -27,7 +26,7 @@ module.exports.init = function (app) {
      * Common express configs
      */
     app.use(compression());
-    app.use(favicon(path.join(root, '../public/' + config.favicon)));
+    app.use(favicon(path.join(root, 'public/' + config.favicon)));
     app.use(expressValidator());
     app.use(bodyParser.urlencoded({
         extended: true
@@ -38,7 +37,7 @@ module.exports.init = function (app) {
     /**
      * Configure view engine
      */
-    app.set('views', path.join(root, '../app/views'));
+    app.set('views', path.join(root, 'app/views'));
     app.set('view engine', 'ejs');
 
     /** 
@@ -55,7 +54,7 @@ module.exports.init = function (app) {
     //app.use(basic.middleware);
 
     if (config.serveStatic) {
-        app.use('/static', serveStatic(path.join(root, '../public'), {
+        app.use('/static', serveStatic(path.join(root, 'public'), {
             /*maxAge: config.cache.maxAge*/
         }));
     }

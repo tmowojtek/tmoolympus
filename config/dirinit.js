@@ -4,7 +4,7 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 
 module.exports.init = function (app) {
-    var publicFolderPath = path.join(app.get('root'), '../public');
+    var publicFolderPath = path.join(app.get('root'), 'public');
 
     mkdirp(path.join(publicFolderPath, '/assets'), function (err) {
         if (err) console.error(err);

@@ -1,0 +1,81 @@
+.page-header {
+    cursor: pointer;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.header-img-margin {
+    margin-right: 20px;
+}
+
+.section-line-separator {
+    padding-bottom: 10px;
+    /*border-bottom: 1px solid #eee;*/
+}
+
+.middle th,
+.middle td {
+    background-color: #ebfafa;
+}
+
+.first th,
+.first td {
+    /*background-color: #f6f678;*/
+    background-color: #ffefac;
+}
+
+.second th,
+.second td {
+    /*background-color: #dadada;*/
+    background-color: #fcfabd;
+}
+
+/*
+.third th,
+.third td{
+    background-color: #f9ab70;
+}
+*/
+
+.beforelast th,
+.beforelast td {
+    background-color: #f9dddc
+}
+
+.last th,
+.last td {
+    background-color: #ffccca;
+}
+
+.schedule-container {
+    /*border-bottom: 1px solid #eee;*/
+    padding: 20px 0px;
+}
+
+#current-match-week tr:first-child td {
+    border-top: none;
+}
+
+.color-first {
+    color: #ffefac;
+}
+.color-second {
+    color: #fcfabd;
+}
+.color-middle {
+    color: #ebfafa;
+}
+.color-beforelast {
+    color: #f9dddc;
+}
+.color-last {
+    color: #ffccca;
+}
+
+footer.container-fluid {
+    padding: 25px 0px 10px 0px;
+}

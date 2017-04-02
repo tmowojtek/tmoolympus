@@ -7,7 +7,7 @@ var path = require('path');
 
 module.exports.init = function(app) {
 	var root = app.get('root');
-	var logDirectory = path.join(root, '../log');
+	var logDirectory = path.join(root, '/log');
 	
 	// ensure log directory exists
 	fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
@@ -15,7 +15,7 @@ module.exports.init = function(app) {
 	// create rotating write stream
 	var accessLogStream = FileStreamRotator.getStream({
 		date_format: 'YYYYMMDD',
-		filename: logDirectory + '/access-%DATE%.log',
+		filename: path.join(logDirectory, '/access-%DATE%.log'),
 		frequency: 'daily',
 		verbose: false
 	});

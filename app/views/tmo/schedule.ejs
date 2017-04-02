@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>TMO League</title>
+
+    <!-- Bootstrap -->
+    <link href="/static/test_bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="schedule.css">
+
+</head>
+
+<body ng-app="schedule">
+    <div class="container">
+        <header data-toggle="collapse" data-target="#collapseWell" aria-expanded="false" aria-controls="collapseWell">
+            <div class="page-header">
+                <div class="row my-col-equal">
+                    <div class="col-xs-10 col-md-10 vcenter">
+                        <h1>TMO League <small>schedule!</small></h1>
+                    </div><!--
+                       --><div class="col-xs-2 col-md-2 text-right vcenter">
+                        <img src="/static/test_bootstrap/images/15644395_1362731687071386_1162232921_n.png" class="header-img-margin">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div id="collapseWell" class="collapse">
+            <div class="well">
+                <a class="btn btn-info" role="button" href="/league">Table</a>
+            </div>
+        </div>
+    </div>
+    <article ng-controller="ScheduleController">
+        <section>
+            <!-- current week matches -->
+            <div class="container-fluid text-center">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6" ng-repeat="week in transformedSchedule">
+                                <h3>Match week #{{$index+1}}</h3>
+                                <h4>{{week[0].date_from}} - {{week[0].date_to}}</h4>
+                                <br>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover">
+                                        <tbody id="accordion">
+                                            <tr ng-repeat="match in week">
+                                                <td ng-class="{'col-xs-2 col-sm-1 col-md-1': $first}"><img ng-src="{{match.picture_a}}"></td>
+                                                <td ng-class="{'col-xs-3 col-sm-4 col-md-4': $first}">{{match.name_a}}</td>
+                                                <td ng-class="{'col-xs-2 col-sm-2 col-md-2': $first}">{{match.score_a}} - {{match.score_b}}</td>
+                                                <td ng-class="{'col-xs-3 col-sm-4 col-md-4': $first}">{{match.name_b}}</td>
+                                                <td ng-class="{'col-xs-2 col-sm-1 col-md-1': $first}"><img ng-src="{{match.picture_b}}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        
+    </article>
+
+    <footer class="container text-center footer-padding">
+        <p>The Myth of clan &copy; 2017</p>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/test_bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/restangular/1.5.1/restangular.min.js"></script>
+
+    <script type="text/javascript" src="/static/test_bootstrap/app/schedule.js"></script>
+</body>
+
+</html>

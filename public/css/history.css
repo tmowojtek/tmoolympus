@@ -60,6 +60,7 @@ body {
 }
 
 #tmo-header {
+    position: relative;
     /*border: 1px solid red;*/
     display: block;
     height: 83px;
@@ -99,6 +100,12 @@ body {
     /* -28px ? */
     position: relative;
     width: 428px;
+}
+
+#tmo-10th-link {
+    position: absolute;
+    right: -24px;
+    top: 0px;
 }
 
 #tmo-img {
@@ -347,11 +354,15 @@ body {
 }
 
 .content-history {
-    background-color: white;
+    /*background-color: white;*/
+    background-image: url(../images/tmoolympus/history/hist.png);
+    background-repeat: no-repeat;
+    background-size: 931px auto;
     display: block;
     padding: 20px;
     /*text-align: center;*/
     width: 889px;
+    height: 3050px;
     font-family: 'Arial';
     font-size: 16px;
     line-height: 20px;
@@ -362,6 +373,7 @@ body {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+    -webkit-background-origin:border;
 }
 
 .content-history .history-section {}

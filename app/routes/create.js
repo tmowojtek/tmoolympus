@@ -1,9 +1,10 @@
 'use strict'
 
+var path = require('path');
 var create = require('express').Router();
-var createController = require('../controllers/tmo/create');
-var isloggedin = require('./helpers/isloggedin');
-var isAuthorized = require('./helpers/isAuthorized');
+var createController = require(path.join(__dirname, '../controllers/tmo/create'));
+var isloggedin = require(path.join(__dirname, 'helpers/isloggedin'));
+var isAuthorized = require(path.join(__dirname, 'helpers/isAuthorized'));
 
 create.get('/newscategory', isloggedin, isAuthorized.tmoSA, createController.createNewsCategory);
 create.get('/role', isloggedin, isAuthorized.tmoSA, createController.createRole);

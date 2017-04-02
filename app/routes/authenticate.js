@@ -1,9 +1,10 @@
 'use strict'
 
+var path = require('path');
 var passport = require('passport');
 var auth = require('express').Router();
-var isLoggedIn = require('./helpers/isloggedin');
-var authController = require('../controllers/tmo/authenticate');
+var isLoggedIn = require(path.join(__dirname, 'helpers/isloggedin'));
+var authController = require(path.join(__dirname, '../controllers/tmo/authenticate'));
 
 auth.get('/auth', isLoggedIn, function(req, res) {
 	console.log('im about to render auth page');

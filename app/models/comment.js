@@ -1,8 +1,9 @@
 'use strict'
 
+var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Counter = require('./counter');
+var Counter = require(path.join(__dirname, 'counter'));
 //var autoPopulate = require('mongoose-autopopulate');
 
 var CommentSchema = new Schema({
