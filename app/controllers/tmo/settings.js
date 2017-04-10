@@ -20,15 +20,15 @@ var defOpponentPic = '/static/images/tmoolympus/const_elements/tmolastwars-nolog
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         if (req.path == '/news/uploadnews') {
-            cb(null, '/public/assets/newsimg/')
+            cb(null, './public/assets/newsimg/')
         } else if (req.path == '/user/updatepic') {
-            cb(null, '/public/assets/avatars/')
+            cb(null, './public/assets/avatars/')
         } else if (req.path == '/war/uploadwar') {
-            cb(null, '/public/assets/warimg/')
+            cb(null, './public/assets/warimg/')
         } else if (req.path == '/admin/uploadteam') {
-            cb(null, '/public/assets/teamimg/')
+            cb(null, './public/assets/teamimg/')
         } else {
-            cb(null, '/public/assets/tmp/')
+            cb(null, './public/assets/tmp/')
         }
     }
     , filename: function (req, file, cb) {
@@ -430,7 +430,7 @@ module.exports.uploadWar = function (req, res) {
                     //console.log('users: ' + users);
                     var tmpArr = [];
 					
-                    for (var el in users) {
+                    for (el in users) {
                         tmpArr.push(el.tag);
                         if (Array.isArray(req.body.tmoLineUp)) {
                             if (req.body.tmoLineUp.indexOf(el.tag) != -1) {
@@ -465,7 +465,7 @@ module.exports.uploadWar = function (req, res) {
                     //console.log('opponentlineup: ' + newWar.opponentLineUp);
 
                     if (Array.isArray(req.body.tmoLineUp)) {
-                        for (var el2 in req.body.tmoLineUp) {
+                        for (el2 in req.body.tmoLineUp) {
                             if (tmpArr.indexOf(el2) == -1) {
                                 newWar.tmoLineUpNotUser.push(el2);
                             }
@@ -476,7 +476,7 @@ module.exports.uploadWar = function (req, res) {
                         }
                     }
                     if (Array.isArray(req.body.opponentLineUp)) {
-                        for (var el3 in req.body.opponentLineUp) {
+                        for (el3 in req.body.opponentLineUp) {
                             if (tmpArr.indexOf(el3) == -1) {
                                 newWar.opponentLineUpNotUser.push(el3);
                             }
@@ -494,7 +494,7 @@ module.exports.uploadWar = function (req, res) {
 
                     //console.log('mapsplayed: ' + req.body.mapsPlayed);
                     if (Array.isArray(req.body.mapsPlayed)) {
-                        for (var el4 in req.body.mapsPlayed) {
+                        for (el4 in req.body.mapsPlayed) {
                             newWar.mapsPlayed.push(el4);
                         }
                     } else {
@@ -525,7 +525,7 @@ module.exports.uploadWar = function (req, res) {
                     }
 					
 					
-                    for (var el6 in req.files) {
+                    for (el6 in req.files) {
                         newWar.warImages.push(path.join('/static/assets/warimg', el6.filename));
                         //newWar.warImages.push(el6.path.replace('public\\', '\\static\\'));
                         //console.log('______+++++++');
