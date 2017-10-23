@@ -13,4 +13,4 @@ The Myth of Olympus webpage project by = TMO = members
 
 # what was used?
 
-HTML, CSS, JavaScript, jQuery, AngularJS, NodeJS, MongoDB, Express
+HTML, CSS, JavaScript, jQuery, AngularJS, Node.js, MongoDB, Express
