@@ -8,8 +8,8 @@ The Myth of Olympus webpage project by = TMO = members
 
 # project contributors
 
-- Dawid aka SNK - site layout design
-- Wojtek aka kiki - front-end, back-end, Red Hat Openshift v2 deplyment and maintenance
+- Dawid - site layout design
+- Wojtek - front-end, back-end, Red Hat Openshift v2 deplyment and maintenance
 
 # what was used?
 
