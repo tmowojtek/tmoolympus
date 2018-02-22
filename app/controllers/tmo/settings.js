@@ -1,4 +1,4 @@
-//'use strict'
+'use strict'
 
 var fs = require('fs');
 var mongoose = require('mongoose');
@@ -430,7 +430,7 @@ module.exports.uploadWar = function (req, res) {
                     //console.log('users: ' + users);
                     var tmpArr = [];
 					
-                    for (el in users) {
+                    users.forEach(function(el) {//for (var el of users) {
                         tmpArr.push(el.tag);
                         if (Array.isArray(req.body.tmoLineUp)) {
                             if (req.body.tmoLineUp.indexOf(el.tag) != -1) {
@@ -459,28 +459,28 @@ module.exports.uploadWar = function (req, res) {
                         //if (req.body.opponentLineUp.indexOf(el.tag) != -1) {
                           //  newWar.opponentLineUp.push(el._id);
                         //}
-                    }
+                    })
 
                     //console.log('tmolineup: ' + newWar.tmoLineUp);
                     //console.log('opponentlineup: ' + newWar.opponentLineUp);
 
                     if (Array.isArray(req.body.tmoLineUp)) {
-                        for (el2 in req.body.tmoLineUp) {
+                        req.body.tmoLineUp.forEach(function(el2) {//for (var el2 of req.body.tmoLineUp) {
                             if (tmpArr.indexOf(el2) == -1) {
                                 newWar.tmoLineUpNotUser.push(el2);
                             }
-                        }
+                        })
                     } else {
                         if (tmpArr.indexOf(req.body.tmoLineUp) == -1) {
                             newWar.tmoLineUpNotUser.push(req.body.tmoLineUp);
                         }
                     }
                     if (Array.isArray(req.body.opponentLineUp)) {
-                        for (el3 in req.body.opponentLineUp) {
+                        req.body.opponentLineUp.forEach(function (el3) {//for (var el3 of req.body.opponentLineUp) {
                             if (tmpArr.indexOf(el3) == -1) {
                                 newWar.opponentLineUpNotUser.push(el3);
                             }
-                        }
+                        })
                     } else {
                         if (tmpArr.indexOf(req.body.opponentLineUp) == -1) {
                             newWar.opponentLineUpNotUser.push(req.body.opponentLineUp);
@@ -494,9 +494,9 @@ module.exports.uploadWar = function (req, res) {
 
                     //console.log('mapsplayed: ' + req.body.mapsPlayed);
                     if (Array.isArray(req.body.mapsPlayed)) {
-                        for (el4 in req.body.mapsPlayed) {
+                        req.body.mapsPlayed.forEach(function(el4) {//for (var el4 of req.body.mapsPlayed) {
                             newWar.mapsPlayed.push(el4);
-                        }
+                        })
                     } else {
                         newWar.mapsPlayed.push(req.body.mapsPlayed);
                     }
@@ -524,13 +524,13 @@ module.exports.uploadWar = function (req, res) {
                         overalltheir = +req.body.their;
                     }
 					
-					
-                    for (el6 in req.files) {
+					console.log('req.files: ' + req.files);
+                    req.files.forEach(function(el6) {//for (var el6 of req.files) {
                         newWar.warImages.push(path.join('/static/assets/warimg', el6.filename));
                         //newWar.warImages.push(el6.path.replace('public\\', '\\static\\'));
                         //console.log('______+++++++');
                         //console.log(el6.path.replace('public\\', '\\static\\'));
-                    }
+                    })
 					
 					
                     if (req.body.warMvp) {
