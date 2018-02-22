@@ -11,7 +11,19 @@ module.exports.init = function (app) {
     //mongoose.connect(config.mongodb.uri, config.mongodb.options); // not used?
     //openshift srv
     //mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + config.mongodb.options.dbname);
-	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL);
+	//mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL);
+	
+	// default to a 'localhost' configuration:
+	var connection_string = '127.0.0.1:27017/YOUR_APP_NAME';
+	// if OPENSHIFT env variables are present, use the available connection info:
+	if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+		connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+		process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+		process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+		process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+		process.env.OPENSHIFT_APP_NAME;
+	}
+	mongoose.connect(connection_string);
 
     // global plugin registration
     //mongoose.plugin(deepPopulate, {});
