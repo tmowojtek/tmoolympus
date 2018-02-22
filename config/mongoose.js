@@ -14,16 +14,27 @@ module.exports.init = function (app) {
 	//mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL);
 	
 	// default to a 'localhost' configuration:
-	var connection_string = '127.0.0.1:27017/YOUR_APP_NAME';
+	//var connection_string = '127.0.0.1:27017/tmoolympus';
 	// if OPENSHIFT env variables are present, use the available connection info:
-	if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+	/*if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
 		connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
 		process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
 		process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
 		process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
 		process.env.OPENSHIFT_APP_NAME;
 	}
-	mongoose.connect(connection_string);
+	mongoose.connect(connection_string);*/
+	
+	var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
+      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
+      mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
+      mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
+      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+      mongoUser = process.env[mongoServiceName + '_USER'];
+	var mongoURL = 'mongodb://';
+	mongoURL += mongoUser + ':' + mongoPassword + '@';
+	mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+	mongoose.connect(mongoURL);
 
     // global plugin registration
     //mongoose.plugin(deepPopulate, {});
