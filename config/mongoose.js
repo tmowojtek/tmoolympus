@@ -10,7 +10,8 @@ module.exports.init = function (app) {
     //mongoose.connect(config.mongodb.uri); // local
     //mongoose.connect(config.mongodb.uri, config.mongodb.options); // not used?
     //openshift srv
-    mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + config.mongodb.options.dbname);
+    //mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL + config.mongodb.options.dbname);
+	mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL);
 
     // global plugin registration
     //mongoose.plugin(deepPopulate, {});
