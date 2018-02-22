@@ -29,11 +29,12 @@ module.exports.init = function (app) {
       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
       mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
       mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+      mongoPassword = process.env[mongoServiceName + '_PASSWORD'],
       mongoUser = process.env[mongoServiceName + '_USER'];
 	var mongoURL = 'mongodb://';
 	mongoURL += mongoUser + ':' + mongoPassword + '@';
 	mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+	console.log(mongoURL);
 	mongoose.connect(mongoURL);
 
     // global plugin registration
