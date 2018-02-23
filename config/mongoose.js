@@ -47,9 +47,9 @@ module.exports.init = function (app) {
     mongoose.plugin(autoPopulate);
 
     // If the Node process ends, cleanup existing connections
-    process.on('SIGINT', cleanup);
-    process.on('SIGTERM', cleanup);
-    process.on('SIGHUP', cleanup);
+    //process.on('SIGINT', cleanup);
+    //process.on('SIGTERM', cleanup);
+    //process.on('SIGHUP', cleanup);
 
     if (app) {
         app.set('mongoose', mongoose);
