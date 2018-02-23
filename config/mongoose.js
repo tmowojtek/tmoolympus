@@ -35,7 +35,12 @@ module.exports.init = function (app) {
 	mongoURL += mongoUser + ':' + mongoPassword + '@';
 	mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
 	console.log(mongoURL);
-	mongoose.connect(mongoURL);
+	console.log("trying to connect..");
+	mongoose.connect(mongoURL, function(err) { 
+		console.log("inside error callback");
+		if (err) throw err;
+	});
+	console.log("after connect..");
 
     // global plugin registration
     //mongoose.plugin(deepPopulate, {});
