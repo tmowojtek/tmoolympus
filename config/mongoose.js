@@ -36,7 +36,7 @@ module.exports.init = function (app) {
 	mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
 	console.log(mongoURL);
 	console.log("trying to connect..");
-	mongoose.connect(mongoURL, function(err) { 
+	mongoose.connect(mongoURL, { autoIndex: false }, function(err) { 
 		console.log("inside error callback");
 		if (err) throw err;
 	});

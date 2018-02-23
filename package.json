@@ -39,7 +39,7 @@
 			"serve-static": "1.12.1",
 			"file-stream-rotator": "0.0.6",
             "mkdirp": "0.5.1",
-			"mongoose": "4.4.14",
+			"mongoose": ">=4.4.14",
             "mongoose-deep-populate": "3.0.0",
             "mongoose-autopopulate": "0.4.0",
 			"morgan": "1.7.0",
