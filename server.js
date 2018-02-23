@@ -52,6 +52,9 @@ if (!module.parent) {
     server = http.createServer(app);
     //server = https.createServer(options, app);
     //server.listen(config.port || 3000, function () {
+	
+	console.log("ip check: " + process.env.OPENSHIFT_NODEJS_IP);
+		
     server.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080, process.env.OPENSHIFT_NODEJS_IP || config.hostname, function () {
         var addr = server.address();
         console.log(
