@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 // add document:  _id:"newsid",seq:0
 
 var CounterSchema = new Schema({
-	_id: {
+	col_name: { // _id previously
 		type: String,
 		required: true,
 		unique: true
@@ -22,7 +22,7 @@ var CounterSchema = new Schema({
 CounterSchema.statics.generateNextSequence = function(name, callback) {
 	console.log('in counter gen seq');
 	this.findOneAndUpdate(
-		{ _id: name },
+		{ col_name: name }, // _id previously
 		{ $inc: { seq: 1 } },
 		{ new: true, upsert: true },
 		callback
