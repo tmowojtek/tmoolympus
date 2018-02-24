@@ -39,7 +39,7 @@ var config = {
     , dbinitValues: {
         adminAccount: {
             tag: 'kiki'
-            , pw: 'omegalul'
+            , pw: '$2a$08$NFkAz5HGaK3/TV.wphu2JuWBwBKB6yMI4DsVvRXFf9DTyTFdYMOau'
             , mail: 'tmowojtek@gmail.com'
         }
         , roles: [{

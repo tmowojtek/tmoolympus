@@ -84,7 +84,7 @@ module.exports.init = function (dbinitConfig) {
                                             , tag: dbinitConfig.adminAccount.tag
                                             , taglowercase: dbinitConfig.adminAccount.tag.toLowerCase()
                                             , email: dbinitConfig.adminAccount.mail
-                                            , pw: User.generateHash(dbinitConfig.adminAccount.pw)
+                                            , pw: dbinitConfig.adminAccount.pw
                                             , userPictureSrc: defUserPicture
                                             , createdat: Date.now()
                                             , active: true
