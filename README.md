@@ -1,9 +1,9 @@
 # tmoolympus
 The Myth of Olympus webpage project by = TMO = members
-
-~~- app was running at/until end of Red Hat Openshift v2~~
-~~- could be found at tmoolympus-tmowebpage.rhcloud.com~~
-~~- will deploy it at Red Hat Openshift v3 when I find some spare time~~
+~~
+- app was running at/until end of Red Hat Openshift v2
+- could be found at tmoolympus-tmowebpage.rhcloud.com
+- will deploy it at Red Hat Openshift v3 when I find some spare time
 
 *Update end of February 2018*
 - migrated app to Red Hat Openshift v3 successfuly!
